@@ -4,36 +4,31 @@ description: Redesign Oreste Web
 type: message
 state: open
 participants: coordinator, Alex
-sequence: 4
-message_id: 938fc425-60b0-4866-94de-ac07b056d1d4
+sequence: 5
+message_id: ce2d04e4-b218-4101-82d2-a0c214d6f415
 from: Alex
 to: coordinator
-reply_expected: false
+reply_expected: true
 read_by: none
-in_reply_to: 3
-created_at: 2026-11-03T16:53:20Z
+created_at: 2026-11-03T17:00:26Z
 
 ## Message
 
-Para coordinator — revisión independiente de PR #1 (fase 1), respuesta a 0003.
+Para coordinator — nueva instrucción explícita del propietario de Oreste Web, transmitida por Alex.
 
-ALCANCE VERIFICADO
-PR https://github.com/jmartinlabs/oreste-web/pull/1, head ea7b90e, 14 archivos (12 textuales y 2 capturas JPEG). Revisión documental de arquitectura, migración, contenido, URL, inventario y evidencias textuales; no se han reproducido pruebas ni inspeccionado binarios JPEG. No se ha hecho merge.
+INSTRUCCIÓN DEL PROPIETARIO
+El propietario quiere avanzar EN PARALELO: concluir la fase 1 y empezar YA la fase 2, presentando VARIOS prototipos visuales. La autorización para iniciar el trabajo de diseño/prototipado de la fase 2 procede de esta petición directa del propietario; el Relay sólo transmite la instrucción y no sustituye las demás puertas de aprobación.
 
-RESULTADO
-Conforme en lo esencial: WordPress intacto; Hostinger sin capacidades asumidas; URLs de los cinco proyectos conservadas; /blog/ -> /trabajos/ sólo planificado; backup + rollback condicionados a D1 y prueba real. No detecto credenciales o backups en los archivos textuales revisados. Recomiendo AJUSTES DOCUMENTALES antes de proponer aprobación de la fase 1; no hay motivos para cambiar la tecnología.
+ORGANIZACIÓN RECOMENDADA
+1. Línea F1: resolver los hallazgos de revisión de la PR #1 comunicados en el mensaje 0004, actualizar la documentación y solicitar nueva revisión. No fusionar PR #1 sin aprobación expresa.
+2. Línea F2, independiente: empezar en paralelo con subagentes de OpenCode especializados en diseño/implementación y QA. Usar ramas y worktrees separados, sin editar simultáneamente los mismos archivos.
+3. Presentar al menos TRES direcciones realmente distintas: A «Artesano contemporáneo», B «Precisión luminosa» y C una tercera propuesta de identidad visual que el equipo justifique. No limitarse a variaciones de color.
+4. Cada dirección debe ser un prototipo local navegable en Astro/Tailwind: portada, una página de servicio y un caso de estudio, con versiones móvil y escritorio; incluir capturas y una comparación de ventajas/inconvenientes. Utilizar el mismo contenido real verificado para compararlas; marcar claramente todo texto o recurso provisional. No presentar fotos ficticias como trabajos realizados.
+5. Priorizar identidad, claridad de servicios, portfolio de trabajos, contacto móvil, accesibilidad, rendimiento y estética profesional apropiada a la Costa del Sol.
+6. El coordinador integra el informe y presenta los tres prototipos al propietario para elegir la dirección definitiva (D7). No imponer una dirección sin su aprobación.
 
-HALLAZGOS / ACCIONES
-1. P1 — URL de medios heredados: specs/audit/asset-inventory.csv enumera 34 recursos originales en /wp-content/uploads/, pero specs/migration/wordpress-to-astro.md sólo contempla conservar los 5 slugs y redirigir páginas de adjuntos. Definir política explícita por cada URL de medios (preservar URL y archivo, o 301 a nuevo asset cuando proceda), para no romper enlaces externos ni imágenes indexadas. No ejecutar aún.
-2. P1 — Páginas de adjunto: specs/audit/url-inventory.csv agrupa 34 rutas como /<proyecto>/<adjunto>/ sin enumerar sus URL reales. Extraer del attachment-sitemap una matriz de URL de origen y destino exactos (o marcar la tarea verificable para la fase 4 antes de corte). No asumir que todas corresponden a un proyecto ni que su destino SEO correcto es la página del proyecto: hoy algunas redirigen directamente a un archivo de imagen.
-3. P1 — Esquema vs ficha de servicio: specs/content/service-pages-structure.md exige bloques 'qué incluye', proceso, zona de servicio e introducción; el Zod propuesto en specs/phase-1-plan.md §4.3 sólo define title, description, summary, benefits, faqs, cover. Alinear esquema y plantilla para no terminar con seis páginas incompletas o contenido hardcodeado no validable.
-4. P2 — Pruebas 301/404: el plan marca scripts/check-redirects.mjs como puerta de CI sobre dist, pero .htaccess se ejecuta en el servidor, no en un build estático. Separar validación estática de matriz/configuración en CI de los tests HTTP reales en staging Hostinger tras autorización.
-5. P2 — Consistencia de fases: §9 fase 4 menciona implementar 301, mientras §5 y migración dicen que se implementarán en fase 5. Aclarar: reglas preparadas/validadas en fase 4 o staging; activación efectiva en producción únicamente durante fase 5. También distinguir prototipos Astro fase 2 del bootstrap definitivo de fase 3.
-6. P2 — Checklist de cutover/rollback: el procedimiento es razonable, pero ruta real de docroot, renombrado, forma de exportar SQL, capacidad de restauración y objetivo <15 min quedan condicionados a D1 y al spike. Mantenerlos como requisitos sin declarar capacidad real probada ni tiempo garantizado.
-7. P2 — Repositorio público: capturas JPEG binarias no inspeccionadas aquí; confirmar antes del merge que no incluyen datos privados ni metadatos EXIF/GPS. La auditoría textual no evidencia secretos.
+LÍMITES DE ESTA AUTORIZACIÓN
+Se autoriza únicamente diseño y prototipos de fase 2 en local y cierre documental de fase 1. No autoriza merge de PR #1, producción, staging, DNS, Hostinger, WordPress, redirecciones, compras ni despliegues. Las decisiones D1/D13 no bloquean los prototipos; documentarlas para etapas posteriores. Mantener informes de subagentes al coordinador, QA independiente y worktrees limpios tras cierre aprobado.
 
-BLOQUEOS
-Bloqueo documental para recomendar aprobación completa de la PR hasta resolver, al menos, el plan para medios heredados y la coherencia esquema/fichas. El resto puede registrarse como prerrequisito explícito para la fase que corresponda. D1 y D13 NO bloquean el diseño de fase 2.
-
-AUTORIZACIONES
-Ninguna. Esta revisión no autoriza merge, fase 2, staging, cambios WordPress/DNS/Hostinger ni despliegue.
+RETORNO SOLICITADO
+Confirma cómo repartes las líneas paralelas, ramas/worktrees, número de propuestas y entregables; reporta los bloqueos si los hay.

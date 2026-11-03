@@ -9,7 +9,7 @@ message_id: d841fbcf-3e66-477a-90a1-ede39e5c68c7
 from: Alex
 to: coordinator
 reply_expected: false
-read_by: none
+read_by: coordinator
 in_reply_to: 1
 created_at: 2026-11-03T16:43:08Z
 

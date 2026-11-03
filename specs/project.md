@@ -82,7 +82,7 @@ técnico se trasladará a `guidelines/architecture.md`.
 | Hostinger definitivo; plan, SSH y backups se verifican antes de staging y no bloquean diseño (D1, parcial) | Confirmada | Usuario, 2026-11-03 |
 | Sección `/trabajos/` con 301 desde `/blog/`; conservar URLs de proyectos; no aplicar aún (D3) | Confirmada | Usuario, 2026-11-03 |
 | Estructura de seis páginas de servicio, sin inventar datos (D4, parcial) | Confirmada | Usuario, 2026-11-03 |
-| Trece propuestas visuales A–M en tres rondas antes del diseño definitivo (D7, en curso) | Confirmada | Usuario, 2026-11-03 |
+| Dieciocho propuestas visuales A–R en cuatro tandas antes del diseño definitivo (D7, en curso) | Confirmada | Usuario, 2026-11-03 |
 | Despliegue manual verificable primero; automatización después (D11) | Confirmada | Usuario, 2026-11-03 |
 
 Estado completo de D1–D15 en [`setup-progress.md`](setup-progress.md#decision-status).

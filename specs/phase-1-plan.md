@@ -494,23 +494,25 @@ El detalle vive en [`migration/wordpress-to-astro.md`](migration/wordpress-to-as
 Entregables: auditoría, inventario de URLs y medios, arquitectura propuesta, plan de hosting,
 flujo de agentes, plan de migración, decisiones pendientes. **Completada como evidencia.**
 
-### Fase 2 — Trece propuestas visuales (prototipos listos)
+### Fase 2 — Dieciocho propuestas visuales (prototipos listos)
 
 Objetivo: elegir una dirección o combinación antes de construir. **Autorizada directamente por el
-propietario el 2026-11-03 en tres rondas.**
+propietario el 2026-11-03 en cuatro tandas.**
 
 - **A–C:** Artesano contemporáneo, Precisión luminosa y Cuaderno de obra.
 - **D–G:** Brutalista elegante, Editorial premium, Mediterráneo contemporáneo y Before/After driven.
 - **H–M:** Habana Art Déco, Cuba elegante contemporánea, Psicodélica abstracta, Neo-psicodelia
   premium, Wabi-sabi textural y Retro signage artesanal.
+- **N–R:** Before/After con portada editorial, y tres paletas de Neo-psicodelia (esmeralda,
+  nocturna y rosa) más una Psicodélica solar.
 
 No son variantes de color: difieren en paleta, tipografía, retícula, tono y jerarquía visual. El
-propietario elige entre las trece antes de que se implemente el diseño definitivo.
+propietario elige entre las dieciocho antes de que se implemente el diseño definitivo.
 
 Las trece se prototipan en Astro + Tailwind: portada, página de servicio y caso de estudio, en
 móvil y escritorio, con **el mismo contenido real** (G usa la fachada con antes/después
 verificado). Detalle operativo en [`phase-2/plan.md`](phase-2/plan.md) y comparación completa en
-[`phase-2/comparison.md`](phase-2/comparison.md). Entregables: trece prototipos, 78 capturas,
+[`phase-2/comparison.md`](phase-2/comparison.md). Entregables: dieciocho prototipos, 108 capturas,
 ficha comparativa y decisión registrada. Previsualización local; sin infraestructura nueva.
 **Sin migración completa ni publicación.** Salida: dirección elegida por el propietario.
 
@@ -602,7 +604,7 @@ necesarias antes del staging y las demás se resolverán cuando toque.
 | D4 | Parcial | Estructura de seis páginas preparada; datos por confirmar sin inventar | Contenido final (fase 4); fase 2 con marcadores provisionales |
 | D5 | Pendiente | Formulario: ninguno o PHP+SMTP | Fase 6 |
 | D6 | Pendiente | Analítica: GA4 con consentimiento o sin analítica | Lanzamiento |
-| D7 | En curso | Trece propuestas A–M; elección del propietario antes de implementar | Fase 2 (salida) |
+| D7 | En curso | Dieciocho propuestas A–R; elección del propietario antes de implementar | Fase 2 (salida) |
 | D8 | Pendiente | Contenido legal y responsable del tratamiento | Lanzamiento |
 | D9 | Pendiente | Fotos, vídeo y logo originales | Migración |
 | D10 | Pendiente | Reseñas y Google Business Profile | Contenido local |
@@ -632,7 +634,7 @@ necesarias antes del staging y las demás se resolverán cuando toque.
 - [x] Decisiones D1–D4, D7 y D11 registradas; D2, D3 y D11 resueltas.
 - [x] Estructura de servicios preparada sin inventar datos (D4).
 - [x] Hallazgos P1/P2 de la revisión 0004 corregidos en documentación.
-- [x] Fase 2 autorizada por el propietario en tres rondas; trece prototipos A–M construidos.
+- [x] Fase 2 autorizada por el propietario en cuatro tandas; dieciocho prototipos A–R construidos.
 - [ ] Nueva revisión de la PR #1 tras las correcciones.
 - [x] Sin desarrollo, sin cambios en WordPress/DNS/Hostinger, sin servicios nuevos, sin
       repositorios nuevos, sin despliegues ni merges.

@@ -1,7 +1,7 @@
-# Comparación A–M — Fase 2
+# Comparación A–R — Fase 2
 
-Estado: **trece prototipos listos para decisión o combinación**. Fecha: 2026-11-03.
-Autorización: directa del propietario para tres rondas (A/B/C, D/E/F/G y H–M).
+Estado: **dieciocho prototipos listos para decisión o combinación**. Fecha: 2026-11-03.
+Autorización: directa del propietario para cuatro tandas (A/B/C, D/E/F/G, H–M y N–R).
 Salida pendiente: elegir una dirección o combinar elementos (D7).
 
 ## 1. Prototipos
@@ -21,18 +21,25 @@ Salida pendiente: elegir una dirección o combinar elementos (D7).
 | K | Neo-psicodelia premium | `prototypes/k` | <http://localhost:4344/> | Baño |
 | L | Wabi-sabi textural | `prototypes/l` | <http://localhost:4345/> | Baño |
 | M | Retro signage artesanal | `prototypes/m` | <http://localhost:4346/> | Baño |
+| N | Before/After con portada editorial | `prototypes/n` | <http://localhost:4351/> | Fachada con antes/después real |
+| O | Neo-psicodelia esmeralda | `prototypes/o` | <http://localhost:4352/> | Baño |
+| P | Neo-psicodelia nocturna | `prototypes/p` | <http://localhost:4353/> | Baño |
+| Q | Neo-psicodelia rosa | `prototypes/q` | <http://localhost:4354/> | Baño |
+| R | Psicodélica solar | `prototypes/r` | <http://localhost:4355/> | Baño |
 
 **Sala de comparación:** <http://localhost:4330/> (`prototypes/index.html`).
 **Captura de conjunto:** [`screenshots/comparison.png`](screenshots/comparison.png).
 
 Cada una incluye portada, una página de servicio y un caso de estudio, en móvil y escritorio.
-A–F y H–M usan el baño; G usa la fachada con antes/después real.
+A–F, H–M y O–R usan el baño; G y N usan la fachada con antes/después real.
 
 ## 2. Base común
 
 - A–F usan el mismo `content.json` (hash idéntico) y las mismas fotos.
-- G usa `content-g.json` con el proyecto real de fachada porque es el único con fotos
-  verificadas de antes y después. No inventa un antes para el baño.
+- G y N usan `content-g.json` con el proyecto real de fachada porque es el único con fotos
+  verificadas de antes y después. No inventan un antes para el baño.
+- O, P y Q son la misma estructura de K con tres paletas distintas; R es la estructura de J
+  con otra paleta. Cambian el color, no el contenido ni la jerarquía.
 - Mismos datos de contacto, zonas y servicios.
 - Contenido provisional marcado: alcance, proceso, materiales, garantía y preguntas del servicio;
   ubicación y foto del antes cuando falta.
@@ -41,11 +48,12 @@ A–F y H–M usan el baño; G usa la fachada con antes/después real.
 
 ## 3. Verificación técnica
 
-78 comprobaciones (13 propuestas × 3 rutas × 2 tamaños). Las trece pasan build, HTTP 200, un H1,
-sin overflow, imágenes con alt, sin peticiones externas, sin errores de consola y sin enlaces
-vacíos. A–F y H–M tienen cero scripts; G tiene un único script inline para el comparador.
+108 comprobaciones (18 propuestas × 3 rutas × 2 tamaños). Las dieciocho pasan build, HTTP 200,
+un H1, sin overflow, imágenes con alt, sin peticiones externas, sin errores de consola y sin
+enlaces vacíos. Dieciséis tienen cero scripts; G y N tienen un único script inline para el
+comparador antes/después.
 
-| Comprobación | A–F y H–M | G |
+| Comprobación | Resto (16) | G y N |
 | --- | --- | --- |
 | Build de 3 páginas | Pasa | Pasa |
 | HTTP 200 | Pasa | Pasa |
@@ -55,9 +63,9 @@ vacíos. A–F y H–M tienen cero scripts; G tiene un único script inline para
 | Sin peticiones externas | Pasa | Pasa |
 | Sin errores de consola | Pasa | Pasa |
 | Enlaces vacíos | 0 | 0 |
-| Scripts | 0 | 1 (slider) |
+| Scripts | 0 | 1 (comparador) |
 
-G usa un único script inline para el comparador antes/después; el resto es cero JavaScript.
+G y N usan un único script inline para el comparador antes/después; el resto es cero JavaScript.
 El slider de G funciona con teclado, puntero y tiene fallback sin JS.
 
 ## 4. Lectura de cada dirección
@@ -165,6 +173,53 @@ flechas y bordes gruesos.
 exagera; etiquetas pequeñas.
 **Público:** autónomo o taller pequeño que vende confianza, proximidad y trabajo bien hecho.
 
+### N — Before/After con portada editorial
+
+**Idea:** la prueba real de G, pero con portada de verdad: cubierta oscura, titular grande y
+foto de fachada a sangre; el comparador se convierte en la sección `03 / Evidencia`.
+**Fortalezas:** conserva la prueba visual y gana presencia de marca; jerarquía clara y orden
+editorial; distinta de G (que abre con el comparador) y de D (brutalista sin evidencia).
+**Riesgos:** la prueba sigue dependiendo de un único caso y de un antes/después con ángulos
+distintos; la portada alta retrasa la foto en pantallas de 900 px.
+**Público:** profesional con trabajo real que quiere una presencia más premium y editorial que
+una plantilla de servicios.
+
+### O — Neo-psicodelia esmeralda
+
+**Idea:** la estructura de K en bosque, salvia, marfil y cobre; atmósfera líquida pero terrosa.
+**Fortalezas:** identidad completamente distinta con la misma composición; encaja con la
+fotografía real (madera, jardín, cal); contraste AA resuelto con dos tonos de cobre.
+**Riesgos:** el verde puede derivar en «eco/rustic»; el cobre de texto pequeño necesita su
+variante oscura; los orbes oscuros van más contenidos que en K.
+**Público:** estudio de reforma premium con discurso material y arquitectónico.
+
+### P — Neo-psicodelia nocturna
+
+**Idea:** K en índigo, medianoche, arena, coral y jade; noche arquitectónica y serena.
+**Fortalezas:** la más sobria de las tres paletas; buena legibilidad y bandas oscuras potentes;
+el coral queda como acento y línea, sin volver al burdeos.
+**Riesgos:** más fría y severa que K; el salto arena→medianoche debe validarse con el cliente;
+los orbes de jade son sutiles.
+**Público:** vivienda premium y clientes internacionales que prefieren discreción.
+
+### Q — Neo-psicodelia rosa
+
+**Idea:** K en perla, rosa, ciruela y bronce; la paleta más suave y femenina.
+**Fortalezas:** cálida y contemporánea sin perder el aire premium; contraste resuelto usando
+ciruela y carbón para texto, rosa solo en formas.
+**Riesgos:** el rosa sobre perla es 1,7:1 y nunca puede usarse como texto; puede leerse menos
+técnica que O o P.
+**Público:** interioristas, segundas residencias y clientes que buscan una marca cálida.
+
+### R — Psicodélica solar
+
+**Idea:** la energía de J en cobalto, azafrán, coral y aguamarina; sol y color sin postal.
+**Fortalezas:** personalidad inmediata y cálida; CTAs muy visibles; conserva la legibilidad de J
+con una paleta completamente nueva.
+**Riesgos:** el cobalto con azafrán polariza; exige disciplina de contraste (texto tinta sobre
+azafrán, nunca crema); sigue siendo la opción más rupturista.
+**Público:** cliente que quiere destacar y un público menos conservador.
+
 ## 5. Matriz rápida
 
 Valoración del coordinador, no una decisión. Escala 1–5.
@@ -193,6 +248,22 @@ Valoración del coordinador, no una decisión. Escala 1–5.
 | Mantenimiento | 4 | 4 | 3 | 3 | 3 | 4 |
 | Encaje Costa del Sol | 4 | 5 | 3 | 4 | 5 | 5 |
 
+### Cuarta tanda
+
+| Criterio | N | O | P | Q | R |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Claridad en 5 s | 5 | 4 | 4 | 4 | 3 |
+| Confianza/cercanía | 4 | 4 | 4 | 5 | 4 |
+| Calidad percibida | 5 | 5 | 5 | 4 | 4 |
+| Contacto móvil | 5 | 4 | 4 | 4 | 4 |
+| Diferenciación | 4 | 4 | 4 | 4 | 5 |
+| Legibilidad | 5 | 4 | 4 | 4 | 3 |
+| Mantenimiento | 4 | 2 | 2 | 2 | 3 |
+| Encaje Costa del Sol | 5 | 4 | 4 | 4 | 4 |
+
+O, P y Q comparten estructura, así que su coste de mantenimiento es el mismo que K: una sola
+paleta que hay que respetar en cada edición.
+
 ## 6. Lectura del coordinador
 
 - **A** sigue siendo la opción más equilibrada para una web corporativa cercana.
@@ -207,6 +278,11 @@ Valoración del coordinador, no una decisión. Escala 1–5.
 - **K** es la psicodelia elegante; atrevida pero contenida y legible.
 - **L** es la más táctil y humana; encaja con el oficio y la calma.
 - **M** es la más comercial y de taller; rotulación con carácter y contacto claro.
+- **N** es G con portada de verdad; la opción si gusta la prueba real pero se quiere una
+  cabecera con presencia.
+- **O, P y Q** son la misma K en tres climas: esmeralda/material, nocturna/sobria y
+  rosa/cálida. Eligen paleta, no estructura.
+- **R** es J en versión solar; misma energía, color más cálido y menos «rave».
 
 La decisión es del propietario, que puede elegir una o combinar elementos (por ejemplo, la
 estructura de G con la tipografía de A). No se implementa nada hasta registrarlo.

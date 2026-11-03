@@ -41,8 +41,8 @@ El detalle está en [`project.md`](project.md#3-restricciones-y-decisiones-confi
 - **D4 (parcial):** estructura de las páginas de servicio preparada en
   [`content/service-pages-structure.md`](content/service-pages-structure.md); no inventar
   información y señalar los datos que necesitan confirmación.
-- **D7 (parcial, autorizada):** tres propuestas visuales diferenciadas A/B/C; el propietario elige
-  la dirección definitiva antes de implementar.
+- **D7 (parcial, autorizada):** dieciocho propuestas visuales diferenciadas A–R en cuatro tandas;
+  el propietario elige la dirección definitiva antes de implementar.
 - **Fase 2 autorizada:** prototipos locales navegables (portada, servicio y caso de estudio) con
   el mismo contenido real; sin staging, DNS, WordPress, redirecciones ni despliegues.
 - **D11:** priorizar un despliegue manual verificable; GitHub Actions queda para una fase
@@ -58,7 +58,7 @@ El detalle está en [`project.md`](project.md#3-restricciones-y-decisiones-confi
 | D4 | Parcial | Estructura de servicios preparada; datos por confirmar sin inventar | Contenido final (fase 4); fase 2 con marcadores provisionales |
 | D5 | Pendiente | Formulario: ninguno o PHP+SMTP | Fase 6 |
 | D6 | Pendiente | Analítica: GA4 con consentimiento o sin analítica | Lanzamiento |
-| D7 | En curso | Tres propuestas A/B/C; elección del propietario antes de implementar | Fase 2 (salida) |
+| D7 | En curso | Dieciocho propuestas A–R; elección del propietario antes de implementar | Fase 2 (salida) |
 | D8 | Pendiente | Contenido legal y responsable del tratamiento | Lanzamiento |
 | D9 | Pendiente | Fotos, vídeo y logo originales | Migración |
 | D10 | Pendiente | Reseñas y Google Business Profile | Contenido local |
@@ -78,13 +78,13 @@ El detalle está en [`project.md`](project.md#3-restricciones-y-decisiones-confi
   esquema de servicios alineado, separación validación estática/HTTP, fase 4 vs 5 aclarada,
   rollback sin tiempos garantizados y capturas sin GPS/EXIF.
 - **Pendiente:** nueva revisión de la PR. No hay merge.
-- **Fase 2 autorizada directamente por el propietario** el 2026-11-03 en tres rondas. Trece
-  prototipos construidos y verificados: A/B/C, D/E/F/G y H–M en `prototypes/`, con contenido
+- **Fase 2 autorizada directamente por el propietario** el 2026-11-03 en cuatro tandas. Dieciocho
+  prototipos construidos y verificados: A/B/C, D/E/F/G, H–M y N–R en `prototypes/`, con contenido
   compartido. Comparación en [`phase-2/comparison.md`](phase-2/comparison.md) y sala local en
   `http://localhost:4330/`. Sin staging, DNS, WordPress, redirecciones ni despliegues.
 
 ## Next action
 
-El propietario elige una dirección entre A–M o una combinación y se registra la decisión.
+El propietario elige una dirección entre A–R o una combinación y se registra la decisión.
 Después: extraer tokens, conservar el prototipo elegido y limpiar los descartados. F1 sigue
 pendiente de la nueva revisión de la PR #1; no hay merge.

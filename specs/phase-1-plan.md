@@ -494,24 +494,30 @@ El detalle vive en [`migration/wordpress-to-astro.md`](migration/wordpress-to-as
 Entregables: auditoría, inventario de URLs y medios, arquitectura propuesta, plan de hosting,
 flujo de agentes, plan de migración, decisiones pendientes. **Completada como evidencia.**
 
-### Fase 2 — Dos propuestas visuales (siguiente)
+### Fase 2 — Tres propuestas visuales (en curso)
 
-Objetivo: elegir una dirección antes de construir.
+Objetivo: elegir una dirección antes de construir. **Autorizada directamente por el propietario
+el 2026-11-03.**
 
 - **Propuesta A — «Artesano contemporáneo»**: neutros cálidos, verde profundo y terracota,
   tipografía editorial, fotografía grande, textura de oficio; transmite confianza y cercanía.
 - **Propuesta B — «Precisión luminosa»**: blancos y piedra caliza, azul profundo, retícula clara,
   datos visibles (años, plazos, m²), estética mediterránea y técnica; transmite orden y rapidez.
+- **Propuesta C — «Cuaderno de obra»**: papel, grafito, naranja de seguridad y azul de plano;
+  etiquetas mono, retícula visible, fichas técnicas y fotos anotadas; convierte el portfolio en
+  evidencia del proceso. Se justifica porque el negocio vende confianza basada en trabajo real y
+  esta dirección hace visible el proceso, los materiales y el antes/después.
 
 No serán variantes de color: difieren en paleta, tipografía, retícula, tono y jerarquía visual. El
-propietario elige entre ambas antes de que se implemente el diseño definitivo.
+propietario elige entre las tres antes de que se implemente el diseño definitivo.
 
-Ambas se prototipan de verdad en Astro + Tailwind (no sólo imágenes): portada, una página de
+Las tres se prototipan de verdad en Astro + Tailwind (no sólo imágenes): portada, una página de
 servicio y un caso de estudio, en móvil y escritorio, con **el mismo contenido real** para que la
-comparación sea justa. Entregables: dos prototipos ejecutables y comparables, ficha comparativa,
-tokens de diseño y decisión registrada. La previsualización será local (build + capturas) salvo
-que D1/D13 ya estén autorizados y exista staging; no se crea infraestructura nueva para la fase 2.
-**Sin migración completa ni publicación.** Salida: dirección elegida por el propietario.
+comparación sea justa. Detalle operativo y criterios:
+[`phase-2/plan.md`](phase-2/plan.md). Entregables: tres prototipos ejecutables y comparables,
+capturas, ficha comparativa, tokens de diseño y decisión registrada. La previsualización será
+local (build + capturas); no se crea infraestructura nueva para la fase 2. **Sin migración
+completa ni publicación.** Salida: dirección elegida por el propietario.
 
 Criterios de comparación, en este orden: claridad de la propuesta en 5 segundos, confianza y
 cercanía, calidad percibida del trabajo, facilidad para contactar desde el móvil, diferenciación
@@ -605,7 +611,7 @@ necesarias antes del staging y las demás se resolverán cuando toque.
 | D4 | Parcial | Estructura de seis páginas preparada; datos por confirmar sin inventar | Contenido final (fase 4); fase 2 con marcadores provisionales |
 | D5 | Pendiente | Formulario: ninguno o PHP+SMTP | Fase 6 |
 | D6 | Pendiente | Analítica: GA4 con consentimiento o sin analítica | Lanzamiento |
-| D7 | Parcial | Dos propuestas visuales diferenciadas; elección antes del diseño definitivo | Fase 2 (salida) |
+| D7 | En curso | Tres propuestas A/B/C; elección del propietario antes de implementar | Fase 2 (salida) |
 | D8 | Pendiente | Contenido legal y responsable del tratamiento | Lanzamiento |
 | D9 | Pendiente | Fotos, vídeo y logo originales | Migración |
 | D10 | Pendiente | Reseñas y Google Business Profile | Contenido local |
@@ -635,7 +641,8 @@ necesarias antes del staging y las demás se resolverán cuando toque.
 - [x] Decisiones D1–D4, D7 y D11 registradas; D2, D3 y D11 resueltas.
 - [x] Estructura de servicios preparada sin inventar datos (D4).
 - [x] Hallazgos P1/P2 de la revisión 0004 corregidos en documentación.
+- [x] Fase 2 autorizada por el propietario con tres propuestas A/B/C; prototipos en curso.
 - [ ] Nueva revisión de la PR #1 tras las correcciones.
 - [x] Sin desarrollo, sin cambios en WordPress/DNS/Hostinger, sin servicios nuevos, sin
       repositorios nuevos, sin despliegues ni merges.
-- [ ] Autorización explícita para iniciar la fase 2 (pendiente).
+- [ ] Elección de la dirección visual definitiva (D7).

@@ -82,7 +82,7 @@ técnico se trasladará a `guidelines/architecture.md`.
 | Hostinger definitivo; plan, SSH y backups se verifican antes de staging y no bloquean diseño (D1, parcial) | Confirmada | Usuario, 2026-11-03 |
 | Sección `/trabajos/` con 301 desde `/blog/`; conservar URLs de proyectos; no aplicar aún (D3) | Confirmada | Usuario, 2026-11-03 |
 | Estructura de seis páginas de servicio, sin inventar datos (D4, parcial) | Confirmada | Usuario, 2026-11-03 |
-| Dos propuestas visuales diferenciadas antes del diseño definitivo (D7, parcial) | Confirmada | Usuario, 2026-11-03 |
+| Tres propuestas visuales A/B/C antes del diseño definitivo (D7, en curso) | Confirmada | Usuario, 2026-11-03 |
 | Despliegue manual verificable primero; automatización después (D11) | Confirmada | Usuario, 2026-11-03 |
 
 Estado completo de D1–D15 en [`setup-progress.md`](setup-progress.md#decision-status).
@@ -103,6 +103,7 @@ Estado completo de D1–D15 en [`setup-progress.md`](setup-progress.md#decision-
 - Migración desde WordPress: [`migration/wordpress-to-astro.md`](migration/wordpress-to-astro.md)
 - Estructura de páginas de servicio:
   [`content/service-pages-structure.md`](content/service-pages-structure.md)
+- Fase 2: [`phase-2/plan.md`](phase-2/plan.md)
 - Plan de fase 1: [`phase-1-plan.md`](phase-1-plan.md)
 - Progreso: [`setup-progress.md`](setup-progress.md)
 

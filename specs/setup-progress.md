@@ -4,8 +4,8 @@ Current stage: 1
 
 Fase 1 (auditoría y plan) está **completada como evidencia**, no como aprobación. Los
 documentos de identidad, tecnología y arquitectura son propuestas que esperan revisión humana.
-La resolución parcial de decisiones del 2026-11-03 reduce bloqueos, pero no aprueba la fase 1 ni
-autoriza la fase 2.
+La resolución parcial de decisiones del 2026-11-03 reduce bloqueos. El propietario autorizó
+después, de forma directa, iniciar la fase 2 con **tres** propuestas visuales A/B/C.
 
 | Stage | Status | Evidence / canonical decision links |
 | --- | --- | --- |
@@ -41,8 +41,10 @@ El detalle está en [`project.md`](project.md#3-restricciones-y-decisiones-confi
 - **D4 (parcial):** estructura de las páginas de servicio preparada en
   [`content/service-pages-structure.md`](content/service-pages-structure.md); no inventar
   información y señalar los datos que necesitan confirmación.
-- **D7 (parcial):** presentar dos propuestas visuales diferenciadas y elegir antes de implementar
-  el diseño definitivo.
+- **D7 (parcial, autorizada):** tres propuestas visuales diferenciadas A/B/C; el propietario elige
+  la dirección definitiva antes de implementar.
+- **Fase 2 autorizada:** prototipos locales navegables (portada, servicio y caso de estudio) con
+  el mismo contenido real; sin staging, DNS, WordPress, redirecciones ni despliegues.
 - **D11:** priorizar un despliegue manual verificable; GitHub Actions queda para una fase
   posterior.
 
@@ -56,7 +58,7 @@ El detalle está en [`project.md`](project.md#3-restricciones-y-decisiones-confi
 | D4 | Parcial | Estructura de servicios preparada; datos por confirmar sin inventar | Contenido final (fase 4); fase 2 con marcadores provisionales |
 | D5 | Pendiente | Formulario: ninguno o PHP+SMTP | Fase 6 |
 | D6 | Pendiente | Analítica: GA4 con consentimiento o sin analítica | Lanzamiento |
-| D7 | Parcial | Dos propuestas visuales; elección antes de implementar | Fase 2 (salida) |
+| D7 | En curso | Tres propuestas A/B/C; elección del propietario antes de implementar | Fase 2 (salida) |
 | D8 | Pendiente | Contenido legal y responsable del tratamiento | Lanzamiento |
 | D9 | Pendiente | Fotos, vídeo y logo originales | Migración |
 | D10 | Pendiente | Reseñas y Google Business Profile | Contenido local |
@@ -76,13 +78,13 @@ El detalle está en [`project.md`](project.md#3-restricciones-y-decisiones-confi
   esquema de servicios alineado, separación validación estática/HTTP, fase 4 vs 5 aclarada,
   rollback sin tiempos garantizados y capturas sin GPS/EXIF.
 - **Pendiente:** nueva revisión de la PR. No hay merge.
-- **Fase 2 no iniciada.** El mensaje relay 0005 transmite una autorización del propietario, pero
-  el relay no sustituye la aprobación: se requiere confirmación directa del propietario en esta
-  sesión.
+- **Fase 2 autorizada directamente por el propietario** el 2026-11-03 con tres propuestas A/B/C.
+  Prototipos en curso en `prototypes/a`, `prototypes/b` y `prototypes/c`, con contenido compartido
+  en `prototypes/shared/`. Sin staging, DNS, WordPress, redirecciones ni despliegues.
 
 ## Next action
 
-Obtener confirmación directa del propietario para iniciar o no la fase 2. Si se autoriza, repartir
-F1 (cierre de revisión de la PR #1) y F2 (tres prototipos locales A/B/C) en ramas/worktrees
-separados, sin staging, DNS, WordPress, redirecciones ni despliegues. Si no se autoriza, cerrar
-solo F1 y solicitar la nueva revisión de la PR.
+F2 en curso: revisar y capturar los tres prototipos, preparar la comparación A/B/C y presentarla
+al propietario para que elija la dirección definitiva (D7). En paralelo, F1 queda pendiente de la
+nueva revisión de la PR #1; no hay merge. Tras la elección, limpiar los prototipos descartados y
+registrar la decisión antes de pasar a la fase 3.

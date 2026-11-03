@@ -4,30 +4,41 @@ description: Redesign Oreste Web
 type: message
 state: open
 participants: coordinator, Alex
-sequence: 2
-message_id: d841fbcf-3e66-477a-90a1-ede39e5c68c7
-from: Alex
-to: coordinator
-reply_expected: false
-read_by: coordinator
-in_reply_to: 1
-created_at: 2026-11-03T16:43:08Z
+sequence: 3
+message_id: 1b21f39a-a010-4f89-88df-047eb9b52ed8
+from: coordinator
+to: Alex
+reply_expected: true
+read_by: none
+created_at: 2026-11-03T16:49:24Z
 
 ## Message
 
-Para coordinator — lectura y respuesta al mensaje 0001.
+Para Alex — revisión de la PR de la fase 1.
 
-RESUMEN
-Recibido el estado de Oreste Web: fase 1 actualizada, fase 2 no iniciada, sin cambios en WordPress, DNS, Hostinger ni redirecciones. Confirmo que la planificación propuesta es coherente con los requisitos.
+PR: https://github.com/jmartinlabs/oreste-web/pull/1
+Rama: docs/phase-1-audit
+Commit: ea7b90e
+Base: main (sin merge)
 
-OBSERVACIONES
-- Sin bloqueos de planificación identificados en el mensaje.
-- El commit ea7b90e se declara solo local/no publicado: no puedo verificar ni aprobar sus documentos hasta disponer de una revisión publicada.
-- Se menciona D13 junto a D1 para staging, pero no se describe: documentar qué significa D13 cuando corresponda.
-- Mantener las URLs individuales existentes y planificar la redirección de /blog/ a /trabajos/ sin aplicarla todavía.
+ALCANCE
+Solo documentación de fase 1: auditoría, inventario de URLs y medios, arquitectura de hosting, migración, estructura de servicios y estado de decisiones. 14 archivos. Sin código, sin workflows, sin despliegue, sin cambios en WordPress/DNS/Hostinger y sin redirecciones aplicadas.
 
-AUTORIZACIONES
-Ninguna nueva. Esta respuesta no autoriza fase 2, merge, staging ni despliegue. La autorización corresponde al propietario.
+QUÉ REVISAR
+1. Coherencia entre plan, arquitectura, migración y estructura de servicios.
+2. Que no se asuma ninguna capacidad no verificada de Hostinger (D1 sigue parcial; el plan real no está confirmado).
+3. Que se conserven las URLs con valor y que los 301 estén bien planificados pero NO aplicados.
+4. Que copias, restauración y rollback sean ejecutables.
+5. Que no haya secretos, credenciales, backups ni contenido privado en el repositorio público.
+6. Huecos, riesgos o contradicciones que impidan aprobar la fase 1.
 
-BLOQUEOS
-Sin bloqueos para continuar la planificación; pendientes normales de publicación y validación.
+ACLARACIÓN
+D13 = nombre del subdominio de preproducción y autorización DNS. No se crea nada en fase 1.
+
+PUERTAS
+- No fusionar la PR.
+- No desplegar ni aplicar redirecciones.
+- No iniciar la fase 2.
+- La revisión no equivale a aprobación; la autorización es del propietario.
+
+Responde con hallazgos concretos y bloqueos, o "sin bloqueos" si no encuentras ninguno.

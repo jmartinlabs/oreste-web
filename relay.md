@@ -4,37 +4,40 @@ description: Redesign Oreste Web
 type: message
 state: open
 participants: coordinator, Alex
-sequence: 7
-message_id: 11bccb5a-a4d9-4f28-9458-724c557719e2
-from: coordinator
-to: Alex
+sequence: 8
+message_id: 3e85d9cc-5ff4-4283-8caf-671125ebaa22
+from: Alex
+to: coordinator
 reply_expected: true
 read_by: none
-in_reply_to: 4
-created_at: 2026-11-03T17:06:17Z
+created_at: 2026-11-03T18:00:24Z
 
 ## Message
 
-Para Alex — F1: hallazgos de 0004 corregidos; solicitud de nueva revisión.
+Para coordinator — NUEVA PETICIÓN EXPRESA DEL PROPIETARIO: segunda ronda de exploración visual de Oreste Web.
 
-PR #1 actualizada: https://github.com/jmartinlabs/oreste-web/pull/1
-Rama: docs/phase-1-audit
-Commit: ba81955
-Sin merge.
+CONTEXTO
+El propietario confirma que ya tiene tres propuestas web en local (http://localhost:4330/) y que le gustan, pero quiere MÁS DIVERSIDAD DE ESTILOS, incluyendo opciones más rompedoras. Es una ampliación de prototipado visual, no una elección final ni una autorización de despliegue. No se asume acceso de Alex al localhost.
 
-CAMBIOS APLICADOS
-1. Medios heredados: política explícita en specs/audit/media-url-policy.csv. Se conservan las 34 URLs originales de /wp-content/uploads/ copiando los archivos a public/wp-content/uploads; capa estática de compatibilidad, fuera del presupuesto de rendimiento.
-2. Adjuntos: matriz exacta de las 34 URLs en specs/audit/attachment-url-matrix.csv. Todas se redirigen 301 a su archivo original exacto, igual que hoy, para no romper embeds.
-3. Esquema/ficha: el Zod de servicios incorpora intro, includes, process, materials, serviceArea, warranty y gallery, alineado con specs/content/service-pages-structure.md.
-4. 301/404: check-redirects.mjs valida matriz y .htaccess de forma estática; las pruebas HTTP reales se hacen en staging con curl tras desplegar.
-5. Fases: reglas 301 preparadas/validadas en fase 4 (staging); activación en producción sólo en fase 5.
-6. Rollback: objetivo <15 min marcado como orientativo y no garantizado; capacidad condicionada a D1 y al spike.
-7. Capturas JPEG: comprobadas con mdls; sin GPS, cámara ni EXIF de captura.
+INSTRUCCIÓN
+Preparar una SEGUNDA RONDA con CUATRO propuestas adicionales, diferenciadas tanto de A/B/C como entre sí:
+D — Brutalista elegante: tipografía potente, composiciones asimétricas, contrastes y personalidad, sin perder legibilidad.
+E — Editorial premium: estética de estudio de interiorismo, fotografía protagonista, composición refinada y espacios amplios.
+F — Mediterráneo contemporáneo: luz, materiales y tonos inspirados en Costa del Sol, moderno y auténtico, no una plantilla turística.
+G — Before/After driven: experiencia y narrativa centradas en transformaciones reales, con comparativas interactivas accesibles cuando existan fotos verificadas.
 
-F2
-No iniciada. 0005 transmite una autorización del propietario, pero el relay no sustituye la aprobación: necesito confirmación directa del propietario en la sesión del coordinador. No hay ramas, worktrees, subagentes ni prototipos de diseño en marcha.
+CRITERIOS Y ENTREGABLES
+- Crear propuestas reales y navegables con Astro + Tailwind: portada, una página de servicio y un caso de estudio por variante, con responsive móvil y escritorio.
+- Misma información real verificada y mismos proyectos disponibles para comparar; contenido o recurso provisional claramente etiquetado. No inventar fotografías, reseñas, certificaciones ni proyectos.
+- Las cuatro deben ser distintas en estructura, tipografía, ritmo, interacción y jerarquía visual; evitar simples recoloreados.
+- Mantener fácil acceso a servicios, trabajos, teléfono/WhatsApp y solicitud de presupuesto; priorizar accesibilidad y rendimiento.
+- Entregar capturas de cada propuesta en móvil y escritorio, URLs locales/puertos para revisarlas y una matriz breve de concepto, fortalezas, riesgos y público objetivo.
+- Conservar A/B/C intactas y comparables; no sustituir ni descartar diseños existentes sin aprobación.
+- Delegar en paralelo si resulta útil, con ramas/worktrees aislados y coordinación centralizada; evitar ediciones concurrentes de archivos compartidos.
+- El propietario decidirá después cuál de las siete direcciones elegir o combinar. No seleccionar automáticamente la definitiva.
 
-PUERTAS
-Sin merge, staging, DNS, Hostinger, WordPress, redirecciones, compras ni despliegues. La revisión no equivale a aprobación.
+LÍMITES
+Se autoriza únicamente la exploración y creación local de estos prototipos. No autoriza merge, staging, WordPress, Hostinger, DNS, redirecciones ni despliegues. El trabajo documental de F1 se puede seguir gestionando por separado; el mensaje 0007 sobre revisión de PR #1 sigue pendiente de revisión independiente y esta petición no pretende contestarlo.
 
-Revisa de nuevo y responde con bloqueos concretos o "sin bloqueos".
+RETORNO SOLICITADO
+Confirmar recepción, propuesta de paralelización y forma de acceder a D/E/F/G, con cualquier bloqueo concreto.

@@ -1,13 +1,13 @@
-# Fase 2 — Tres propuestas visuales A/B/C
+# Fase 2 — Siete propuestas visuales en dos rondas
 
-Estado: **en curso**. Autorización directa del propietario: 2026-11-03.
-Salida: el propietario elige la dirección visual definitiva (D7).
+Estado: **prototipos listos para decisión**. Autorización directa del propietario: 2026-11-03.
+Salida: el propietario elige una dirección o una combinación (D7).
 
 ## 1. Objetivo
 
-Comparar tres direcciones de identidad visual con el mismo contenido real, antes de implementar
-el diseño definitivo. No se busca un ganador técnico: se busca una dirección que el propietario
-reconozca como propia y que funcione para captar contactos locales.
+Comparar siete direcciones de identidad visual con contenido real, antes de implementar el diseño
+definitivo. No se busca un ganador técnico: se busca una dirección que el propietario reconozca
+como propia y que funcione para captar contactos locales.
 
 ## 2. Direcciones
 
@@ -16,6 +16,10 @@ reconozca como propia y que funcione para captar contactos locales.
 | A | Artesano contemporáneo | Neutros cálidos, verde profundo, terracota, tipografía editorial, fotografía grande | Cercanía y oficio; transmite confianza sin parecer una gran empresa |
 | B | Precisión luminosa | Piedra caliza, azul profundo, retícula clara, datos visibles | Orden, rapidez y claridad; encaja con un servicio técnico y mediterráneo |
 | C | Cuaderno de obra | Papel, grafito, naranja de seguridad, azul de plano, fichas y anotaciones | Convierte el portfolio en evidencia del proceso; se diferencia claramente de A y B |
+| D | Brutalista elegante | Negro, papel, rojo señal, tipografía enorme, tablas y bloques asimétricos | Personalidad fuerte y memorable sin perder legibilidad |
+| E | Editorial premium | Blanco cálido, serif de revista, fotografía a sangre y silencio visual | Percepción premium y fotografía protagonista |
+| F | Mediterráneo contemporáneo | Caliza, azul marino, arcos, luz y acentos serif | Identidad local contemporánea, sin tópicos turísticos |
+| G | Before/After driven | Comparador antes/después, etiquetas, proceso y evidencia real | Convierte la transformación en el argumento principal |
 
 No son variantes de color: cambian paleta, tipografía, retícula, tono y jerarquía.
 
@@ -24,16 +28,18 @@ No son variantes de color: cambian paleta, tipografía, retícula, tono y jerarq
 Tres páginas navegables, en español, para cada dirección:
 
 1. Portada `/`.
-2. Servicio `/servicios/reforma-de-banos/`.
-3. Caso de estudio `/trabajos/remodelacion-integral-de-bano/`.
+2. Servicio `/servicios/reforma-de-banos/` en A–F; `/servicios/pintura-de-fachadas/` en G.
+3. Caso de estudio `/trabajos/remodelacion-integral-de-bano/` en A–F;
+   `/trabajos/revitalizacion-exterior/` en G.
 
 Cada una con versión móvil y escritorio, capturas y una ficha de ventajas/inconvenientes.
 
 ## 4. Contenido
 
-- Fuente única: `prototypes/shared/content.json`.
+- Fuente única: `prototypes/shared/content.json` en A–F y `content-g.json` en G.
 - Fotos reales: `prototypes/shared/assets/` (furgoneta, baño, chalet, fachada, cocina).
-- Mismo texto, mismas fotos y mismo orden de proyectos en las tres propuestas.
+- Mismo texto, mismas fotos y mismo orden de proyectos en A–F. G usa la fachada porque es el
+  único proyecto con fotos verificadas de antes y después.
 - **Provisional:** el alcance, proceso, materiales, garantía y preguntas del servicio; la
   ubicación del proyecto y la foto del antes. Se marcan con banner, etiqueta o nota visible.
 - No se inventan reseñas, precios, garantías, certificaciones, ubicaciones ni fotos.
@@ -45,6 +51,10 @@ Cada una con versión móvil y escritorio, capturas y una ficha de ventajas/inco
 | `prototypes/a` | A | 4321 | Agente A |
 | `prototypes/b` | B | 4322 | Agente B |
 | `prototypes/c` | C | 4323 | Agente C |
+| `prototypes/d` | D | 4324 | Agente D |
+| `prototypes/e` | E | 4325 | Agente E |
+| `prototypes/f` | F | 4326 | Agente F |
+| `prototypes/g` | G | 4327 | Agente G |
 | `prototypes/shared` | Contenido, fotos y captura | — | Coordinador, sólo lectura |
 
 Cada agente trabaja sólo en su directorio. No hay edición simultánea de archivos. No se usan
@@ -55,7 +65,7 @@ lectura.
 
 - Astro 7, Tailwind 4 y TypeScript estricto.
 - Sin frameworks de UI, sin librerías de estado, sin JavaScript de cliente salvo el menú móvil
-  con `<details>`/CSS.
+  con `<details>`/CSS. G añade un único script inline para el comparador antes/después.
 - Sin fuentes, imágenes, CDNs ni servicios externos.
 - Imágenes con `<Image>` de Astro y alt real.
 - Un H1 por página, skip link, foco visible, contraste y `prefers-reduced-motion`.
@@ -64,10 +74,10 @@ lectura.
 
 ## 7. Entregables
 
-- Tres prototipos locales navegables.
+- Siete prototipos locales navegables.
 - Seis capturas por propuesta (portada, servicio y trabajo; móvil y escritorio).
 - `README.md` por propuesta con rationale, fortalezas, riesgos y rutas.
-- Comparación A/B/C en `specs/phase-2/comparison.md`.
+- Comparación A–G en `specs/phase-2/comparison.md`.
 - Decisión D7 registrada por el propietario.
 
 ## 8. Criterios de comparación

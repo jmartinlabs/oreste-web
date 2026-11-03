@@ -79,12 +79,13 @@ El detalle está en [`project.md`](project.md#3-restricciones-y-decisiones-confi
   rollback sin tiempos garantizados y capturas sin GPS/EXIF.
 - **Pendiente:** nueva revisión de la PR. No hay merge.
 - **Fase 2 autorizada directamente por el propietario** el 2026-11-03 con tres propuestas A/B/C.
-  Prototipos en curso en `prototypes/a`, `prototypes/b` y `prototypes/c`, con contenido compartido
-  en `prototypes/shared/`. Sin staging, DNS, WordPress, redirecciones ni despliegues.
+  Prototipos construidos y verificados en `prototypes/a`, `prototypes/b` y `prototypes/c`, con
+  contenido compartido en `prototypes/shared/`. Comparación en
+  [`phase-2/comparison.md`](phase-2/comparison.md) y sala local en `http://localhost:4330/`.
+  Sin staging, DNS, WordPress, redirecciones ni despliegues.
 
 ## Next action
 
-F2 en curso: revisar y capturar los tres prototipos, preparar la comparación A/B/C y presentarla
-al propietario para que elija la dirección definitiva (D7). En paralelo, F1 queda pendiente de la
-nueva revisión de la PR #1; no hay merge. Tras la elección, limpiar los prototipos descartados y
-registrar la decisión antes de pasar a la fase 3.
+El propietario elige la dirección visual definitiva (A, B o C) y se registra la decisión. Después:
+extraer tokens, conservar el prototipo elegido y limpiar los descartados. F1 sigue pendiente de la
+nueva revisión de la PR #1; no hay merge.

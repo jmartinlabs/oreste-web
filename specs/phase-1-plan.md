@@ -174,6 +174,7 @@ import { defineCollection, reference } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
+// Alineado con specs/content/service-pages-structure.md
 const servicios = defineCollection({
   loader: glob({ base: './src/content/servicios', pattern: '*.md' }),
   schema: ({ image }) => z.object({
@@ -182,9 +183,19 @@ const servicios = defineCollection({
     description: z.string().min(120).max(165),
     order: z.number().int().default(99),
     summary: z.string().min(80).max(220),
+    intro: z.string().min(80).max(400),
+    includes: z.array(z.string().min(10)).min(3).max(8),
+    process: z.array(z.object({
+      step: z.string().min(3),
+      detail: z.string().min(10),
+    })).min(3).max(5),
+    materials: z.string().max(400).optional(),
+    serviceArea: z.array(z.string().min(3)).min(1),
+    warranty: z.string().max(200).optional(),
     cover: image(),
     coverAlt: z.string().min(20),
     benefits: z.array(z.string().min(10)).min(3).max(6),
+    gallery: z.array(z.object({ src: image(), alt: z.string().min(15) })).max(8).default([]),
     faqs: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
     draft: z.boolean().default(true),
   }),
@@ -366,7 +377,9 @@ URLs individuales de los proyectos se conservan. **No se aplica ninguna redirecc
 en fase 2**: se implementarán y probarán en la fase 5. Las redirecciones se implementan en
 `.htaccess` y se prueban con `scripts/check-redirects.mjs` contra una lista cerrada.
 
-Inventario completo: [`audit/url-inventory.csv`](audit/url-inventory.csv).
+Inventario completo: [`audit/url-inventory.csv`](audit/url-inventory.csv). Los medios heredados
+se rigen por [`audit/media-url-policy.csv`](audit/media-url-policy.csv) y las páginas de adjunto
+por [`audit/attachment-url-matrix.csv`](audit/attachment-url-matrix.csv).
 
 ## 6. Hosting, preproducción y despliegue
 
@@ -430,10 +443,14 @@ Resumen:
 | Alt text obligatorio y no genérico | `check-images.mjs` | Bloquea |
 | Enlaces internos y anclas | `check-links.mjs` sobre `dist/` | Bloquea |
 | NAP coherente con `site.ts` | `check-content.mjs` | Bloquea |
-| 301 y 404 | `check-redirects.mjs` | Bloquea |
+| Matriz de 301 y reglas de `.htaccess` | `check-redirects.mjs` (estático, sin red) | Bloquea |
+| Redirecciones y 404 reales | `curl` o script HTTP en staging, tras desplegar | Bloquea antes de producción |
 | Ortografía española | `cspell` + diccionario es | Avisa (subir a bloqueo tras ajustar) |
 | Build de producción | `astro build` | Bloquea |
 | Fuga de drafts | grep sobre `dist/` | Bloquea |
+
+`.htaccess` no se ejecuta en `dist/`: la matriz y la configuración se validan estáticamente en CI,
+pero las pruebas HTTP reales de 301/404 se hacen en staging Hostinger y, de nuevo, tras el corte.
 
 ### 7.4 El agente nunca
 
@@ -463,8 +480,8 @@ El detalle vive en [`migration/wordpress-to-astro.md`](migration/wordpress-to-as
 - Exportación de sólo lectura por la API REST; WordPress no se modifica ni se actualiza.
 - Copia completa (archivos + base de datos) fuera de `public_html`, verificada y con prueba de
   restauración antes del corte.
-- Conservación de la portada y los cinco slugs de proyecto; 301 para `/blog/`, categorías,
-  adjuntos, feeds y sitemaps.
+- Conservación de la portada, los cinco slugs de proyecto y las 34 URLs de medios heredados;
+  301 para `/blog/`, categorías, adjuntos, feeds y sitemaps.
 - Reescritura y medios en la fase 4; verificación con matriz de URLs, enlaces, schema y
   Lighthouse.
 - Corte en ventana de baja actividad, smoke test, Search Console y vigilancia 48 h.
@@ -524,7 +541,8 @@ provisional. D7 no es un requisito de entrada: **es la salida de la fase 2**.
 
 - Seis páginas de servicio y cinco casos de estudio con contenido aprobado.
 - Páginas legales, cookies y consentimiento.
-- 301, sitemap, schema, Open Graph, enlazado interno.
+- Reglas 301 preparadas y validadas en staging, sin activar en producción; sitemap, schema,
+  Open Graph y enlazado interno.
 - Scripts de validación de contenido e imágenes.
 - Flujo de agentes probado con un cambio real.
 - Salida: staging completo, matriz de URLs verde, contenido aprobado.
@@ -533,7 +551,8 @@ provisional. D7 no es un requisito de entrada: **es la salida de la fase 2**.
 
 - **Despliegue manual verificable** con el runbook de hosting; la automatización no es requisito.
 - Checklist de hPanel, copia completa, restauración de prueba y exportación final.
-- Corte con el runbook, HTTPS/HSTS, 301, caché, Search Console y Google Business Profile.
+- Corte con el runbook, HTTPS/HSTS, activación de los 301 en producción, caché, Search Console y
+  Google Business Profile.
 - Prueba de rollback y vigilancia 48 h.
 - Salida: producción aprobada, verificada y reversible.
 
@@ -615,6 +634,8 @@ necesarias antes del staging y las demás se resolverán cuando toque.
 - [x] Publicación automatizada diseñada con aprobación humana, sin implementarla.
 - [x] Decisiones D1–D4, D7 y D11 registradas; D2, D3 y D11 resueltas.
 - [x] Estructura de servicios preparada sin inventar datos (D4).
+- [x] Hallazgos P1/P2 de la revisión 0004 corregidos en documentación.
+- [ ] Nueva revisión de la PR #1 tras las correcciones.
 - [x] Sin desarrollo, sin cambios en WordPress/DNS/Hostinger, sin servicios nuevos, sin
       repositorios nuevos, sin despliegues ni merges.
 - [ ] Autorización explícita para iniciar la fase 2 (pendiente).

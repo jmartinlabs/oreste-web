@@ -156,7 +156,9 @@ unzip -l site-<sha>.zip | head   # index.html y .htaccess deben estar en la raí
 shasum -a 256 site-<sha>.zip    # macOS; en Linux/CI usar sha256sum
 ```
 
-El artefacto se guarda con el SHA del commit y se conserva para rollback.
+El artefacto se guarda con el SHA del commit y se conserva para rollback. Incluye la capa de
+compatibilidad `wp-content/uploads/` con los originales heredados; no incluye `src/`,
+`node_modules/`, `specs/` ni `.git/`.
 
 ### 6.2 Despliegue en preproducción
 
@@ -192,7 +194,8 @@ Requisitos previos: D1 resuelto, copia verificada, aprobación escrita y ventana
 8. Enviar el sitemap a Search Console y vigilar 48 h.
 
 **Nunca** se suben `src/`, `node_modules/`, `specs/`, `migration-export/`, `.git/` ni archivos de
-entorno. **Nunca** se tocan DNS, MX ni la base de datos de WordPress durante el corte.
+entorno. **Sí** forma parte de `dist/` la capa estática `wp-content/uploads/` con los medios
+originales heredados. **Nunca** se tocan DNS, MX ni la base de datos de WordPress durante el corte.
 
 ### 6.4 Smoke test posterior
 
@@ -201,6 +204,8 @@ entorno. **Nunca** se tocan DNS, MX ni la base de datos de WordPress durante el 
 - [ ] Contacto: teléfono, WhatsApp y correo funcionan.
 - [ ] 301 antiguos sin cadenas.
 - [ ] 404 propio.
+- [ ] Al menos 5 URLs heredadas de `/wp-content/uploads/...` responden 200.
+- [ ] Una página de adjunto responde 301 a su archivo original.
 - [ ] Sitemap y `robots.txt` correctos.
 - [ ] HTTPS y `www` canónicos.
 - [ ] Imágenes y fuentes cargan.
@@ -253,8 +258,8 @@ contenido crítico incorrecto o formulario inoperativo.
 5. Comprobar portada, servicios, proyectos, contacto, 301, 404 y HTTPS.
 6. Registrar la causa y no reintentar sin corregirla.
 
-La base de datos de WordPress no se toca durante el rollback. Objetivo: menos de 15 minutos.
-El rollback se prueba una vez en preproducción antes del corte.
+La base de datos de WordPress no se toca durante el rollback. Objetivo orientativo: menos de 15
+minutos, **no garantizado**; se medirá en el ensayo de preproducción.
 
 ## 10. Publicación automatizada futura (fase 6)
 

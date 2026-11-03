@@ -254,7 +254,8 @@ Método:
 - Rendimiento y accesibilidad: Lighthouse 13.6.0, emulación móvil por defecto, **una ejecución**
   sobre la portada. Los valores son indicativos; la comparación final se hará con tres
   ejecuciones sobre la web nueva.
-- Capturas revisadas visualmente a ancho de escritorio.
+- Capturas revisadas visualmente a ancho de escritorio. Comprobadas con `mdls` el 2026-11-03:
+  sin GPS, modelo de cámara ni EXIF de captura; no contienen datos privados.
 - No se ha accedido a hPanel, DNS, Search Console, Analytics ni base de datos. Cualquier
   afirmación sobre el plan contratado, el tráfico o las conversiones queda fuera de alcance.
 

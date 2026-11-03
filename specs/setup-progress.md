@@ -66,10 +66,23 @@ El detalle está en [`project.md`](project.md#3-restricciones-y-decisiones-confi
 | D14 | Pendiente | Ventana de corte y aprobador | Publicación |
 | D15 | Pendiente | Método final de despliegue | Fase 6 |
 
+## Review status (2026-11-03)
+
+- **PR #1 abierta** (`docs/phase-1-audit`, sin merge).
+- Revisión independiente 0004: hallazgos P1 sobre URLs de medios, matriz de adjuntos y
+  alineación esquema/ficha; P2 sobre pruebas 301/404, fases 4/5, condicionales de rollback y
+  EXIF de capturas.
+- Correcciones aplicadas: `audit/media-url-policy.csv`, `audit/attachment-url-matrix.csv`,
+  esquema de servicios alineado, separación validación estática/HTTP, fase 4 vs 5 aclarada,
+  rollback sin tiempos garantizados y capturas sin GPS/EXIF.
+- **Pendiente:** nueva revisión de la PR. No hay merge.
+- **Fase 2 no iniciada.** El mensaje relay 0005 transmite una autorización del propietario, pero
+  el relay no sustituye la aprobación: se requiere confirmación directa del propietario en esta
+  sesión.
+
 ## Next action
 
-La fase 2 **no ha comenzado** y requiere autorización explícita. Cuando se autorice, empezar por
-las dos propuestas visuales A/B con contenido provisional marcado, sin crear staging ni aplicar
-redirecciones. Ninguna decisión pendiente bloquea el inicio de la fase 2: D1 y D13 sólo son
-necesarias antes de la fase 3 (staging); D4 se completará con la entrevista de contenido; D7 se
-decide al final de la fase 2.
+Obtener confirmación directa del propietario para iniciar o no la fase 2. Si se autoriza, repartir
+F1 (cierre de revisión de la PR #1) y F2 (tres prototipos locales A/B/C) en ramas/worktrees
+separados, sin staging, DNS, WordPress, redirecciones ni despliegues. Si no se autoriza, cerrar
+solo F1 y solicitar la nueva revisión de la PR.

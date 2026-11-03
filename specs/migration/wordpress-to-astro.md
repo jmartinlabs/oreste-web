@@ -20,8 +20,10 @@ Fecha: 2026-11-03. Dominio y cuenta de hosting se conservan.
 - 2 páginas (`/`, `/blog/`), 5 entradas, 2 categorías y 34 medios.
 - 18 imágenes incrustadas en las entradas; 33 imágenes y 1 vídeo en la biblioteca.
 - 7 URLs públicas principales: portada, blog y cinco proyectos.
-- Inventario: [`audit/url-inventory.csv`](../audit/url-inventory.csv) y
-  [`audit/asset-inventory.csv`](../audit/asset-inventory.csv).
+- Inventario: [`audit/url-inventory.csv`](../audit/url-inventory.csv),
+  [`audit/asset-inventory.csv`](../audit/asset-inventory.csv),
+  [`audit/media-url-policy.csv`](../audit/media-url-policy.csv) y
+  [`audit/attachment-url-matrix.csv`](../audit/attachment-url-matrix.csv).
 - Auditoría: [`audit/current-site-audit.md`](../audit/current-site-audit.md).
 
 ## 3. Copia de seguridad previa
@@ -104,13 +106,32 @@ Reglas:
 - Conservar la cadena de consulta cuando exista.
 - Canonical único: `https://www.oresteespinosacampos.es/...`.
 - El sitemap sólo incluye URLs canónicas, sin drafts ni redirecciones.
-- Probar cada fila con `curl` y con `scripts/check-redirects.mjs`.
+- `check-redirects.mjs` valida la matriz y las reglas de `.htaccess` de forma estática; las
+  pruebas HTTP reales se hacen en staging con `curl` tras desplegar.
+- No se activa ninguna redirección en producción hasta la fase 5.
 
 Inventario completo y prioridades en [`audit/url-inventory.csv`](../audit/url-inventory.csv).
 
 **D3 resuelta en planificación:** la sección será `/trabajos/`, `/blog/` se redirige con 301 y se
 conservan las URLs individuales de los proyectos. **No se aplica ninguna redirección todavía**;
 se implementarán y probarán en la fase 5, nunca en fase 1 o 2.
+
+### 6.3 Medios heredados
+
+Las 34 URLs de `/wp-content/uploads/...` pueden estar enlazadas desde fuera del sitio o
+indexadas. Política:
+
+- **Conservar la URL exacta** copiando cada archivo original a `public/wp-content/uploads/...`.
+  El build lo publica como archivo estático; no hace falta WordPress ni PHP.
+- Esta capa es sólo de compatibilidad: **no se carga en las páginas nuevas** y queda fuera del
+  presupuesto de rendimiento.
+- Las páginas nuevas usan las versiones optimizadas de `src/assets` y `/_astro/`.
+- Las 34 páginas de adjunto se redirigen con 301 a su **archivo original exacto**, igual que hoy,
+  para no romper embeds ni enlaces de imagen. Matriz exacta:
+  [`audit/attachment-url-matrix.csv`](../audit/attachment-url-matrix.csv).
+- No se redirige una URL de medio a una página HTML: rompería imágenes incrustadas.
+- Inventario y decisión por archivo: [`audit/media-url-policy.csv`](../audit/media-url-policy.csv).
+- Si más adelante se decide retirar un archivo, se documenta su 301/410 y se prueba en staging.
 
 ## 7. Preproducción y aprobación
 
@@ -149,8 +170,8 @@ El procedimiento depende de la variante de corte confirmada en D1 y en el spike.
 5. Verificar portada, servicios, proyectos, contacto, 301, 404 y HTTPS.
 6. Registrar la causa y no reintentar sin corregirla.
 
-La base de datos de WordPress permanece intacta. Objetivo: menos de 15 minutos. Se prueba una vez
-en preproducción antes del corte.
+La base de datos de WordPress permanece intacta. Objetivo orientativo: menos de 15 minutos, no
+garantizado. Se prueba una vez en preproducción antes del corte.
 
 ## 10. Post-lanzamiento
 

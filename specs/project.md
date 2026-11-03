@@ -96,6 +96,8 @@ Estado completo de D1–D15 en [`setup-progress.md`](setup-progress.md#decision-
 - Auditoría: [`audit/current-site-audit.md`](audit/current-site-audit.md)
 - Inventario de URLs: [`audit/url-inventory.csv`](audit/url-inventory.csv)
 - Inventario de medios: [`audit/asset-inventory.csv`](audit/asset-inventory.csv)
+- Política de URLs de medios heredados: [`audit/media-url-policy.csv`](audit/media-url-policy.csv)
+- Matriz de páginas de adjunto: [`audit/attachment-url-matrix.csv`](audit/attachment-url-matrix.csv)
 - Arquitectura de hosting y despliegue:
   [`architecture/hosting-and-deployment.md`](architecture/hosting-and-deployment.md)
 - Migración desde WordPress: [`migration/wordpress-to-astro.md`](migration/wordpress-to-astro.md)

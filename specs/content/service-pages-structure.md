@@ -107,7 +107,14 @@ Cada ficha indica lo confirmado por la web actual y lo que falta. No hay copy de
 | `title` | 20–65 caracteres, con servicio + Mijas/Costa del Sol |
 | `description` | 120–165 caracteres, con resultado y CTA |
 | `summary` | 80–220 caracteres para tarjetas y hub |
+| `intro` | 80–400 caracteres; problema y resultado |
+| `includes` | 3–8 trabajos concretos incluidos |
+| `process` | 3–5 pasos con título y detalle |
+| `materials` | Marcas y materiales verificados; opcional |
+| `serviceArea` | Municipios y límites confirmados |
+| `warranty` | Garantía real; opcional |
 | `benefits` | 3–6 ventajas verificables |
+| `gallery` | Hasta 8 fotos reales con alt |
 | `faqs` | 3–5 preguntas reales, sin inventar respuestas |
 | `cover` y `coverAlt` | Foto real y alt descriptivo |
 | `order` | Orden de aparición en el hub |

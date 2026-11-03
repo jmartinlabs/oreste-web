@@ -1,11 +1,11 @@
-# Fase 2 — Dieciocho propuestas visuales en cuatro tandas
+# Fase 2 — Diecinueve propuestas visuales en cuatro tandas
 
 Estado: **prototipos listos para decisión**. Autorización directa del propietario: 2026-11-03.
 Salida: el propietario elige una dirección o una combinación (D7).
 
 ## 1. Objetivo
 
-Comparar dieciocho direcciones de identidad visual con contenido real, antes de implementar el diseño
+Comparar diecinueve direcciones de identidad visual con contenido real, antes de implementar el diseño
 definitivo. No se busca un ganador técnico: se busca una dirección que el propietario reconozca
 como propia y que funcione para captar contactos locales.
 
@@ -35,17 +35,17 @@ Tres páginas navegables, en español, para cada dirección:
 
 1. Portada `/`.
 2. Servicio `/servicios/reforma-de-banos/` en A–F, H–M y O–R;
-   `/servicios/pintura-de-fachadas/` en G y N.
+   `/servicios/pintura-de-fachadas/` en G, N y S.
 3. Caso de estudio `/trabajos/remodelacion-integral-de-bano/` en A–F, H–M y O–R;
-   `/trabajos/revitalizacion-exterior/` en G y N.
+   `/trabajos/revitalizacion-exterior/` en G, N y S.
 
 Cada una con versión móvil y escritorio, capturas y una ficha de ventajas/inconvenientes.
 
 ## 4. Contenido
 
-- Fuente única: `prototypes/shared/content.json` en A–F, H–M y O–R, y `content-g.json` en G y N.
+- Fuente única: `prototypes/shared/content.json` en A–F, H–M y O–R, y `content-g.json` en G, N y S.
 - Fotos reales: `prototypes/shared/assets/` (furgoneta, baño, chalet, fachada, cocina).
-- Mismo texto, mismas fotos y mismo orden de proyectos en A–F, H–M y O–R. G y N usan la fachada porque es
+- Mismo texto, mismas fotos y mismo orden de proyectos en A–F, H–M y O–R. G, N y S usan la fachada porque es
   el único proyecto con fotos verificadas de antes y después.
 - **Provisional:** el alcance, proceso, materiales, garantía y preguntas del servicio; la
   ubicación del proyecto y la foto del antes. Se marcan con banner, etiqueta o nota visible.
@@ -73,6 +73,7 @@ Cada una con versión móvil y escritorio, capturas y una ficha de ventajas/inco
 | `prototypes/p` | P | 4353 | Agente P |
 | `prototypes/q` | Q | 4354 | Agente Q |
 | `prototypes/r` | R | 4355 | Agente R |
+| `prototypes/s` | S | 4356 | Agente S |
 | `prototypes/shared` | Contenido, fotos y captura | — | Coordinador, sólo lectura |
 
 Cada agente trabaja sólo en su directorio. No hay edición simultánea de archivos. No se usan
@@ -83,7 +84,7 @@ lectura.
 
 - Astro 7, Tailwind 4 y TypeScript estricto.
 - Sin frameworks de UI, sin librerías de estado, sin JavaScript de cliente salvo el menú móvil
-  con `<details>`/CSS. G y N añaden un único script inline para el comparador antes/después.
+  con `<details>`/CSS. G, N y S añaden un único script inline para el comparador antes/después.
 - Sin fuentes, imágenes, CDNs ni servicios externos.
 - Imágenes con `<Image>` de Astro y alt real.
 - Un H1 por página, skip link, foco visible, contraste y `prefers-reduced-motion`.
@@ -92,10 +93,10 @@ lectura.
 
 ## 7. Entregables
 
-- Dieciocho prototipos locales navegables.
+- Diecinueve prototipos locales navegables.
 - Seis capturas por propuesta (portada, servicio y trabajo; móvil y escritorio).
 - `README.md` por propuesta con rationale, fortalezas, riesgos y rutas.
-- Comparación A–R en `specs/phase-2/comparison.md`.
+- Comparación A–S en `specs/phase-2/comparison.md`.
 - Decisión D7 registrada por el propietario.
 
 ## 8. Criterios de comparación

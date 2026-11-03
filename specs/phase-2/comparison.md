@@ -1,7 +1,8 @@
-# Comparación A–R — Fase 2
+# Comparación A–S — Fase 2
 
-Estado: **dieciocho prototipos listos para decisión o combinación**. Fecha: 2026-11-03.
-Autorización: directa del propietario para cuatro tandas (A/B/C, D/E/F/G, H–M y N–R).
+Estado: **diecinueve prototipos listos para decisión o combinación**. Fecha: 2026-11-03.
+Autorización: directa del propietario para cuatro tandas (A/B/C, D/E/F/G, H–M y N–R) más la
+variante S de G.
 Salida pendiente: elegir una dirección o combinar elementos (D7).
 
 ## 1. Prototipos
@@ -26,18 +27,21 @@ Salida pendiente: elegir una dirección o combinar elementos (D7).
 | P | Neo-psicodelia nocturna | `prototypes/p` | <http://localhost:4353/> | Baño |
 | Q | Neo-psicodelia rosa | `prototypes/q` | <http://localhost:4354/> | Baño |
 | R | Psicodélica solar | `prototypes/r` | <http://localhost:4355/> | Baño |
+| S | G con portada de marca | `prototypes/s` | <http://localhost:4356/> | Fachada con antes/después real |
 
 **Sala de comparación:** <http://localhost:4330/> (`prototypes/index.html`).
 **Captura de conjunto:** [`screenshots/comparison.png`](screenshots/comparison.png).
 
 Cada una incluye portada, una página de servicio y un caso de estudio, en móvil y escritorio.
-A–F, H–M y O–R usan el baño; G y N usan la fachada con antes/después real.
+A–F, H–M y O–R usan el baño; G, N y S usan la fachada con antes/después real.
 
 ## 2. Base común
 
 - A–F usan el mismo `content.json` (hash idéntico) y las mismas fotos.
-- G y N usan `content-g.json` con el proyecto real de fachada porque es el único con fotos
+- G, N y S usan `content-g.json` con el proyecto real de fachada porque es el único con fotos
   verificadas de antes y después. No inventan un antes para el baño.
+- S es G con la portada cambiada: titular de servicio y foto de la furgoneta; el comparador se
+  queda en `02 / Transformaciones`, donde G ya lo tenía.
 - O, P y Q son la misma estructura de K con tres paletas distintas; R es la estructura de J
   con otra paleta. Cambian el color, no el contenido ni la jerarquía.
 - Mismos datos de contacto, zonas y servicios.
@@ -48,12 +52,12 @@ A–F, H–M y O–R usan el baño; G y N usan la fachada con antes/después rea
 
 ## 3. Verificación técnica
 
-108 comprobaciones (18 propuestas × 3 rutas × 2 tamaños). Las dieciocho pasan build, HTTP 200,
+114 comprobaciones (19 propuestas × 3 rutas × 2 tamaños). Las diecinueve pasan build, HTTP 200,
 un H1, sin overflow, imágenes con alt, sin peticiones externas, sin errores de consola y sin
-enlaces vacíos. Dieciséis tienen cero scripts; G y N tienen un único script inline para el
+enlaces vacíos. Diecisiete tienen cero scripts; G, N y S tienen un único script inline para el
 comparador antes/después.
 
-| Comprobación | Resto (16) | G y N |
+| Comprobación | Resto (16) | G, N y S |
 | --- | --- | --- |
 | Build de 3 páginas | Pasa | Pasa |
 | HTTP 200 | Pasa | Pasa |
@@ -65,7 +69,7 @@ comparador antes/después.
 | Enlaces vacíos | 0 | 0 |
 | Scripts | 0 | 1 (comparador) |
 
-G y N usan un único script inline para el comparador antes/después; el resto es cero JavaScript.
+G, N y S usan un único script inline para el comparador antes/después; el resto es cero JavaScript.
 El slider de G funciona con teclado, puntero y tiene fallback sin JS.
 
 ## 4. Lectura de cada dirección
@@ -220,6 +224,18 @@ con una paleta completamente nueva.
 azafrán, nunca crema); sigue siendo la opción más rupturista.
 **Público:** cliente que quiere destacar y un público menos conservador.
 
+### S — G con portada de marca
+
+**Idea:** G sin tocar, salvo la portada: «Pintura y mantenimiento en general» y la foto real de la
+furgoneta; el comparador sigue en `02 / Transformaciones`.
+**Fortalezas:** presenta el negocio y el oficio antes de pedir contexto para una comparativa;
+conserva el argumento de evidencia de G y todo su sistema visual, así que el mantenimiento es
+mínimo.
+**Riesgos:** la foto de la furgoneta no demuestra trabajo; la prueba real queda más abajo; sigue
+dependiendo de un único caso y de ángulos que no coinciden.
+**Público:** profesional que quiere una portada de marca reconocible sin renunciar a la prueba
+antes/después.
+
 ## 5. Matriz rápida
 
 Valoración del coordinador, no una decisión. Escala 1–5.
@@ -250,19 +266,20 @@ Valoración del coordinador, no una decisión. Escala 1–5.
 
 ### Cuarta tanda
 
-| Criterio | N | O | P | Q | R |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| Claridad en 5 s | 5 | 4 | 4 | 4 | 3 |
-| Confianza/cercanía | 4 | 4 | 4 | 5 | 4 |
-| Calidad percibida | 5 | 5 | 5 | 4 | 4 |
-| Contacto móvil | 5 | 4 | 4 | 4 | 4 |
-| Diferenciación | 4 | 4 | 4 | 4 | 5 |
-| Legibilidad | 5 | 4 | 4 | 4 | 3 |
-| Mantenimiento | 4 | 2 | 2 | 2 | 3 |
-| Encaje Costa del Sol | 5 | 4 | 4 | 4 | 4 |
+| Criterio | N | O | P | Q | R | S |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Claridad en 5 s | 5 | 4 | 4 | 4 | 3 | 5 |
+| Confianza/cercanía | 4 | 4 | 4 | 5 | 4 | 5 |
+| Calidad percibida | 5 | 5 | 5 | 4 | 4 | 4 |
+| Contacto móvil | 5 | 4 | 4 | 4 | 4 | 5 |
+| Diferenciación | 4 | 4 | 4 | 4 | 5 | 4 |
+| Legibilidad | 5 | 4 | 4 | 4 | 3 | 4 |
+| Mantenimiento | 4 | 2 | 2 | 2 | 3 | 5 |
+| Encaje Costa del Sol | 5 | 4 | 4 | 4 | 4 | 5 |
 
-O, P y Q comparten estructura, así que su coste de mantenimiento es el mismo que K: una sola
-paleta que hay que respetar en cada edición.
+S es G con otra portada: hereda sus notas salvo en diferenciación (misma base que G) y
+mantenimiento (no añade sistema visual nuevo). O, P y Q comparten estructura, así que su coste de
+mantenimiento es el mismo que K: una sola paleta que hay que respetar en cada edición.
 
 ## 6. Lectura del coordinador
 
@@ -283,6 +300,8 @@ paleta que hay que respetar en cada edición.
 - **O, P y Q** son la misma K en tres climas: esmeralda/material, nocturna/sobria y
   rosa/cálida. Eligen paleta, no estructura.
 - **R** es J en versión solar; misma energía, color más cálido y menos «rave».
+- **S** es G con la portada de marca; si gusta G pero su apertura resulta demasiado
+  «comparativa», S es el cambio mínimo.
 
 La decisión es del propietario, que puede elegir una o combinar elementos (por ejemplo, la
 estructura de G con la tipografía de A). No se implementa nada hasta registrarlo.

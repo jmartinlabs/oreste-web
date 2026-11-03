@@ -494,41 +494,32 @@ El detalle vive en [`migration/wordpress-to-astro.md`](migration/wordpress-to-as
 Entregables: auditoría, inventario de URLs y medios, arquitectura propuesta, plan de hosting,
 flujo de agentes, plan de migración, decisiones pendientes. **Completada como evidencia.**
 
-### Fase 2 — Tres propuestas visuales (en curso)
+### Fase 2 — Trece propuestas visuales (prototipos listos)
 
-Objetivo: elegir una dirección antes de construir. **Autorizada directamente por el propietario
-el 2026-11-03.**
+Objetivo: elegir una dirección o combinación antes de construir. **Autorizada directamente por el
+propietario el 2026-11-03 en tres rondas.**
 
-- **Propuesta A — «Artesano contemporáneo»**: neutros cálidos, verde profundo y terracota,
-  tipografía editorial, fotografía grande, textura de oficio; transmite confianza y cercanía.
-- **Propuesta B — «Precisión luminosa»**: blancos y piedra caliza, azul profundo, retícula clara,
-  datos visibles (años, plazos, m²), estética mediterránea y técnica; transmite orden y rapidez.
-- **Propuesta C — «Cuaderno de obra»**: papel, grafito, naranja de seguridad y azul de plano;
-  etiquetas mono, retícula visible, fichas técnicas y fotos anotadas; convierte el portfolio en
-  evidencia del proceso. Se justifica porque el negocio vende confianza basada en trabajo real y
-  esta dirección hace visible el proceso, los materiales y el antes/después.
+- **A–C:** Artesano contemporáneo, Precisión luminosa y Cuaderno de obra.
+- **D–G:** Brutalista elegante, Editorial premium, Mediterráneo contemporáneo y Before/After driven.
+- **H–M:** Habana Art Déco, Cuba elegante contemporánea, Psicodélica abstracta, Neo-psicodelia
+  premium, Wabi-sabi textural y Retro signage artesanal.
 
-No serán variantes de color: difieren en paleta, tipografía, retícula, tono y jerarquía visual. El
-propietario elige entre las tres antes de que se implemente el diseño definitivo.
+No son variantes de color: difieren en paleta, tipografía, retícula, tono y jerarquía visual. El
+propietario elige entre las trece antes de que se implemente el diseño definitivo.
 
-Las tres se prototipan de verdad en Astro + Tailwind (no sólo imágenes): portada, una página de
-servicio y un caso de estudio, en móvil y escritorio, con **el mismo contenido real** para que la
-comparación sea justa. Detalle operativo y criterios:
-[`phase-2/plan.md`](phase-2/plan.md). Entregables: tres prototipos ejecutables y comparables,
-capturas, ficha comparativa, tokens de diseño y decisión registrada. La previsualización será
-local (build + capturas); no se crea infraestructura nueva para la fase 2. **Sin migración
-completa ni publicación.** Salida: dirección elegida por el propietario.
+Las trece se prototipan en Astro + Tailwind: portada, página de servicio y caso de estudio, en
+móvil y escritorio, con **el mismo contenido real** (G usa la fachada con antes/después
+verificado). Detalle operativo en [`phase-2/plan.md`](phase-2/plan.md) y comparación completa en
+[`phase-2/comparison.md`](phase-2/comparison.md). Entregables: trece prototipos, 78 capturas,
+ficha comparativa y decisión registrada. Previsualización local; sin infraestructura nueva.
+**Sin migración completa ni publicación.** Salida: dirección elegida por el propietario.
 
-Criterios de comparación, en este orden: claridad de la propuesta en 5 segundos, confianza y
-cercanía, calidad percibida del trabajo, facilidad para contactar desde el móvil, diferenciación
-frente a competidores locales, accesibilidad y coste de mantenimiento. Cada propuesta incluye
-portada, página de servicio, caso de estudio, menú móvil, pie, botones y estados de foco.
+Criterios de comparación: claridad en 5 segundos, confianza y cercanía, calidad percibida,
+contacto móvil, diferenciación, accesibilidad y coste de mantenimiento.
 
-La fase 2 **no ha comenzado** y requiere autorización explícita del propietario. D3 está
-resuelta y D4 tiene la estructura preparada en
-[`content/service-pages-structure.md`](content/service-pages-structure.md): no hay que esperar a
-D1/D13, que sólo son necesarias antes de la fase 3 (staging). El material que falte se marca como
-provisional. D7 no es un requisito de entrada: **es la salida de la fase 2**.
+D3 está resuelta y D4 tiene la estructura preparada en
+[`content/service-pages-structure.md`](content/service-pages-structure.md). D1/D13 sólo son
+necesarias antes de la fase 3 (staging). D7 es la salida de la fase 2.
 
 ### Fase 3 — Fundaciones y esqueleto
 
@@ -611,7 +602,7 @@ necesarias antes del staging y las demás se resolverán cuando toque.
 | D4 | Parcial | Estructura de seis páginas preparada; datos por confirmar sin inventar | Contenido final (fase 4); fase 2 con marcadores provisionales |
 | D5 | Pendiente | Formulario: ninguno o PHP+SMTP | Fase 6 |
 | D6 | Pendiente | Analítica: GA4 con consentimiento o sin analítica | Lanzamiento |
-| D7 | En curso | Tres propuestas A/B/C; elección del propietario antes de implementar | Fase 2 (salida) |
+| D7 | En curso | Trece propuestas A–M; elección del propietario antes de implementar | Fase 2 (salida) |
 | D8 | Pendiente | Contenido legal y responsable del tratamiento | Lanzamiento |
 | D9 | Pendiente | Fotos, vídeo y logo originales | Migración |
 | D10 | Pendiente | Reseñas y Google Business Profile | Contenido local |
@@ -641,7 +632,7 @@ necesarias antes del staging y las demás se resolverán cuando toque.
 - [x] Decisiones D1–D4, D7 y D11 registradas; D2, D3 y D11 resueltas.
 - [x] Estructura de servicios preparada sin inventar datos (D4).
 - [x] Hallazgos P1/P2 de la revisión 0004 corregidos en documentación.
-- [x] Fase 2 autorizada por el propietario con tres propuestas A/B/C; prototipos en curso.
+- [x] Fase 2 autorizada por el propietario en tres rondas; trece prototipos A–M construidos.
 - [ ] Nueva revisión de la PR #1 tras las correcciones.
 - [x] Sin desarrollo, sin cambios en WordPress/DNS/Hostinger, sin servicios nuevos, sin
       repositorios nuevos, sin despliegues ni merges.

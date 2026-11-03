@@ -78,14 +78,13 @@ El detalle está en [`project.md`](project.md#3-restricciones-y-decisiones-confi
   esquema de servicios alineado, separación validación estática/HTTP, fase 4 vs 5 aclarada,
   rollback sin tiempos garantizados y capturas sin GPS/EXIF.
 - **Pendiente:** nueva revisión de la PR. No hay merge.
-- **Fase 2 autorizada directamente por el propietario** el 2026-11-03 en dos rondas. Siete
-  prototipos construidos y verificados: A/B/C en `prototypes/a|b|c`, D/E/F/G en
-  `prototypes/d|e|f|g`, con contenido compartido en `prototypes/shared/`. Comparación en
-  [`phase-2/comparison.md`](phase-2/comparison.md) y sala local en `http://localhost:4330/`.
-  Sin staging, DNS, WordPress, redirecciones ni despliegues.
+- **Fase 2 autorizada directamente por el propietario** el 2026-11-03 en tres rondas. Trece
+  prototipos construidos y verificados: A/B/C, D/E/F/G y H–M en `prototypes/`, con contenido
+  compartido. Comparación en [`phase-2/comparison.md`](phase-2/comparison.md) y sala local en
+  `http://localhost:4330/`. Sin staging, DNS, WordPress, redirecciones ni despliegues.
 
 ## Next action
 
-El propietario elige una dirección entre A–G o una combinación y se registra la decisión. Después:
-extraer tokens, conservar el prototipo elegido y limpiar los descartados. F1 sigue pendiente de la
-nueva revisión de la PR #1; no hay merge.
+El propietario elige una dirección entre A–M o una combinación y se registra la decisión.
+Después: extraer tokens, conservar el prototipo elegido y limpiar los descartados. F1 sigue
+pendiente de la nueva revisión de la PR #1; no hay merge.

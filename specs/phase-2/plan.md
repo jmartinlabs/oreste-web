@@ -1,4 +1,4 @@
-# Fase 2 — Siete propuestas visuales en dos rondas
+# Fase 2 — Trece propuestas visuales en tres rondas
 
 Estado: **prototipos listos para decisión**. Autorización directa del propietario: 2026-11-03.
 Salida: el propietario elige una dirección o una combinación (D7).
@@ -20,6 +20,12 @@ como propia y que funcione para captar contactos locales.
 | E | Editorial premium | Blanco cálido, serif de revista, fotografía a sangre y silencio visual | Percepción premium y fotografía protagonista |
 | F | Mediterráneo contemporáneo | Caliza, azul marino, arcos, luz y acentos serif | Identidad local contemporánea, sin tópicos turísticos |
 | G | Before/After driven | Comparador antes/después, etiquetas, proceso y evidencia real | Convierte la transformación en el argumento principal |
+| H | Habana Art Déco | Simetría, arcos, abanicos, coral/menta/crema/oro; arquitectura, sin política | Elegancia geométrica y distinción boutique |
+| I | Cuba elegante contemporánea | Color blocking, lamas, patio; tabaco/turquesa/coral, sin tópicos | Calidez y ritmo local sin literalidad |
+| J | Psicodélica abstracta | Formas fluidas, color inmersivo, marquesinas, maximalismo | Personalidad inmediata y impacto |
+| K | Neo-psicodelia premium | Líquidos, lila/burdeos/teal/oro, serif y capas | Atrevimiento contenido y legible |
+| L | Wabi-sabi textural | Cal, yeso, arcilla, piedra; muestras de material | Tacto, calma y oficio |
+| M | Retro signage artesanal | Rotulación pintada, paneles, estrellas, flechas | Comercio cálido y carácter de taller |
 
 No son variantes de color: cambian paleta, tipografía, retícula, tono y jerarquía.
 
@@ -28,18 +34,18 @@ No son variantes de color: cambian paleta, tipografía, retícula, tono y jerarq
 Tres páginas navegables, en español, para cada dirección:
 
 1. Portada `/`.
-2. Servicio `/servicios/reforma-de-banos/` en A–F; `/servicios/pintura-de-fachadas/` en G.
-3. Caso de estudio `/trabajos/remodelacion-integral-de-bano/` en A–F;
+2. Servicio `/servicios/reforma-de-banos/` en A–F y H–M; `/servicios/pintura-de-fachadas/` en G.
+3. Caso de estudio `/trabajos/remodelacion-integral-de-bano/` en A–F y H–M;
    `/trabajos/revitalizacion-exterior/` en G.
 
 Cada una con versión móvil y escritorio, capturas y una ficha de ventajas/inconvenientes.
 
 ## 4. Contenido
 
-- Fuente única: `prototypes/shared/content.json` en A–F y `content-g.json` en G.
+- Fuente única: `prototypes/shared/content.json` en A–F y H–M, y `content-g.json` en G.
 - Fotos reales: `prototypes/shared/assets/` (furgoneta, baño, chalet, fachada, cocina).
-- Mismo texto, mismas fotos y mismo orden de proyectos en A–F. G usa la fachada porque es el
-  único proyecto con fotos verificadas de antes y después.
+- Mismo texto, mismas fotos y mismo orden de proyectos en A–F y H–M. G usa la fachada porque es
+  el único proyecto con fotos verificadas de antes y después.
 - **Provisional:** el alcance, proceso, materiales, garantía y preguntas del servicio; la
   ubicación del proyecto y la foto del antes. Se marcan con banner, etiqueta o nota visible.
 - No se inventan reseñas, precios, garantías, certificaciones, ubicaciones ni fotos.
@@ -55,6 +61,12 @@ Cada una con versión móvil y escritorio, capturas y una ficha de ventajas/inco
 | `prototypes/e` | E | 4325 | Agente E |
 | `prototypes/f` | F | 4326 | Agente F |
 | `prototypes/g` | G | 4327 | Agente G |
+| `prototypes/h` | H | 4341 | Agente H |
+| `prototypes/i` | I | 4342 | Agente I |
+| `prototypes/j` | J | 4343 | Agente J |
+| `prototypes/k` | K | 4344 | Agente K |
+| `prototypes/l` | L | 4345 | Agente L |
+| `prototypes/m` | M | 4346 | Agente M |
 | `prototypes/shared` | Contenido, fotos y captura | — | Coordinador, sólo lectura |
 
 Cada agente trabaja sólo en su directorio. No hay edición simultánea de archivos. No se usan
@@ -74,10 +86,10 @@ lectura.
 
 ## 7. Entregables
 
-- Siete prototipos locales navegables.
+- Trece prototipos locales navegables.
 - Seis capturas por propuesta (portada, servicio y trabajo; móvil y escritorio).
 - `README.md` por propuesta con rationale, fortalezas, riesgos y rutas.
-- Comparación A–G en `specs/phase-2/comparison.md`.
+- Comparación A–M en `specs/phase-2/comparison.md`.
 - Decisión D7 registrada por el propietario.
 
 ## 8. Criterios de comparación

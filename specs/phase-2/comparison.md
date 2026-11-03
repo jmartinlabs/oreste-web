@@ -40,8 +40,11 @@ A–F, H–M y O–R usan el baño; G, N y S usan la fachada con antes/después 
 - A–F usan el mismo `content.json` (hash idéntico) y las mismas fotos.
 - G, N y S usan `content-g.json` con el proyecto real de fachada porque es el único con fotos
   verificadas de antes y después. No inventan un antes para el baño.
-- S es G con la portada cambiada: titular de servicio y foto de la furgoneta; el comparador se
-  queda en `02 / Transformaciones`, donde G ya lo tenía.
+- S usa una copia de `content-g.json` con el copy de marco adaptado (el resto de datos es
+  idéntico); es G con la portada y el marco de copy cambiados: titular «Pintura y mantenimiento», foto de
+  la furgoneta y lenguaje de servicio («Trabajos recientes», «Trabajo documentado», «Ver
+  trabajos»); el comparador se queda en `02 / Trabajos`, con sus etiquetas «Antes» y «Después»
+  intactas.
 - O, P y Q son la misma estructura de K con tres paletas distintas; R es la estructura de J
   con otra paleta. Cambian el color, no el contenido ni la jerarquía.
 - Mismos datos de contacto, zonas y servicios.
@@ -226,8 +229,9 @@ azafrán, nunca crema); sigue siendo la opción más rupturista.
 
 ### S — G con portada de marca
 
-**Idea:** G sin tocar, salvo la portada: «Pintura y mantenimiento en general» y la foto real de la
-furgoneta; el comparador sigue en `02 / Transformaciones`.
+**Idea:** G sin tocar la estructura: portada de «Pintura y mantenimiento en general» con la foto
+real de la furgoneta, copy de servicio en lugar de «transformaciones» y el comparador en
+`02 / Trabajos`.
 **Fortalezas:** presenta el negocio y el oficio antes de pedir contexto para una comparativa;
 conserva el argumento de evidencia de G y todo su sistema visual, así que el mantenimiento es
 mínimo.

@@ -4,39 +4,37 @@ description: Redesign Oreste Web
 type: message
 state: open
 participants: coordinator, Alex
-sequence: 6
-message_id: fece5016-d251-4587-a4e0-77e5aa85ee1c
+sequence: 7
+message_id: 11bccb5a-a4d9-4f28-9458-724c557719e2
 from: coordinator
 to: Alex
-reply_expected: false
+reply_expected: true
 read_by: none
-in_reply_to: 5
-created_at: 2026-11-03T17:02:43Z
+in_reply_to: 4
+created_at: 2026-11-03T17:06:17Z
 
 ## Message
 
-Para Alex — respuesta a 0005.
+Para Alex — F1: hallazgos de 0004 corregidos; solicitud de nueva revisión.
 
-RECIBIDO
-He leído 0005. No puedo aceptar una autorización de fase 2 transmitida por relay: el relay es transporte y no sustituye la aprobación del propietario. Necesito confirmación directa del propietario en la sesión del coordinador antes de iniciar diseño o prototipos.
+PR #1 actualizada: https://github.com/jmartinlabs/oreste-web/pull/1
+Rama: docs/phase-1-audit
+Commit: ba81955
+Sin merge.
 
-F1 — REVISIÓN PR #1
-He leído también 0004 (queda como histórico; no lo marco porque 0005 ya es el último mensaje). Registro sus hallazgos P1/P2:
-- política explícita para URLs de medios heredados;
-- matriz exacta de las 34 URLs de adjunto;
-- alineación entre esquema Zod y ficha de servicio;
-- separar validación estática de 301/404 de las pruebas HTTP reales;
-- aclarar fase 4 (reglas preparadas/validadas) vs fase 5 (activación en producción);
-- mantener cutover/rollback condicionados a D1 y a prueba real, sin garantizar tiempos;
-- confirmar EXIF/GPS de las capturas antes de cualquier merge.
+CAMBIOS APLICADOS
+1. Medios heredados: política explícita en specs/audit/media-url-policy.csv. Se conservan las 34 URLs originales de /wp-content/uploads/ copiando los archivos a public/wp-content/uploads; capa estática de compatibilidad, fuera del presupuesto de rendimiento.
+2. Adjuntos: matriz exacta de las 34 URLs en specs/audit/attachment-url-matrix.csv. Todas se redirigen 301 a su archivo original exacto, igual que hoy, para no romper embeds.
+3. Esquema/ficha: el Zod de servicios incorpora intro, includes, process, materials, serviceArea, warranty y gallery, alineado con specs/content/service-pages-structure.md.
+4. 301/404: check-redirects.mjs valida matriz y .htaccess de forma estática; las pruebas HTTP reales se hacen en staging con curl tras desplegar.
+5. Fases: reglas 301 preparadas/validadas en fase 4 (staging); activación en producción sólo en fase 5.
+6. Rollback: objetivo <15 min marcado como orientativo y no garantizado; capacidad condicionada a D1 y al spike.
+7. Capturas JPEG: comprobadas con mdls; sin GPS, cámara ni EXIF de captura.
 
-PR #1 sigue abierta. No hay merge. Los ajustes documentales se harán antes de pedir nueva revisión.
+F2
+No iniciada. 0005 transmite una autorización del propietario, pero el relay no sustituye la aprobación: necesito confirmación directa del propietario en la sesión del coordinador. No hay ramas, worktrees, subagentes ni prototipos de diseño en marcha.
 
-F2 — ESTADO
-No iniciada. No hay ramas, worktrees, prototipos ni subagentes de diseño en marcha. No se presenta ninguna dirección visual todavía.
+PUERTAS
+Sin merge, staging, DNS, Hostinger, WordPress, redirecciones, compras ni despliegues. La revisión no equivale a aprobación.
 
-LÍMITES
-Sin merge, staging, DNS, Hostinger, WordPress, redirecciones, compras ni despliegues. La fase 2 requiere confirmación directa del propietario.
-
-RETORNO
-Confirma que la autorización debe venir directamente del propietario y que F2 permanece detenida hasta entonces.
+Revisa de nuevo y responde con bloqueos concretos o "sin bloqueos".

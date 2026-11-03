@@ -1,0 +1,182 @@
+{
+  "source": "https://www.oresteespinosacampos.es/",
+  "lighthouseVersion": "13.6.0",
+  "fetchTime": "2026-11-03T15:41:35.371Z",
+  "formFactor": "mobile",
+  "scores": {
+    "performance": 57,
+    "accessibility": 91,
+    "best-practices": 73,
+    "seo": 100
+  },
+  "metrics": {
+    "first-contentful-paint": {
+      "display": "8.0 s",
+      "value": 7995.3845
+    },
+    "largest-contentful-paint": {
+      "display": "14.8 s",
+      "value": 14816.3845
+    },
+    "speed-index": {
+      "display": "8.0 s",
+      "value": 7995.3845
+    },
+    "total-blocking-time": {
+      "display": "0 ms",
+      "value": 0
+    },
+    "cumulative-layout-shift": {
+      "display": "0",
+      "value": 0
+    },
+    "total-byte-weight": {
+      "display": "Total size was 3,182 KiB",
+      "value": 3258712
+    },
+    "mainthread-work-breakdown": {
+      "display": "2.2 s",
+      "value": 2180.943999999949
+    }
+  },
+  "failingAudits": [
+    {
+      "id": "first-contentful-paint",
+      "score": 0,
+      "title": "First Contentful Paint",
+      "display": "8.0 s"
+    },
+    {
+      "id": "largest-contentful-paint",
+      "score": 0,
+      "title": "Largest Contentful Paint",
+      "display": "14.8 s"
+    },
+    {
+      "id": "speed-index",
+      "score": 0.22,
+      "title": "Speed Index",
+      "display": "8.0 s"
+    },
+    {
+      "id": "errors-in-console",
+      "score": 0,
+      "title": "Browser errors were logged to the console",
+      "display": null
+    },
+    {
+      "id": "interactive",
+      "score": 0.08,
+      "title": "Time to Interactive",
+      "display": "14.8 s"
+    },
+    {
+      "id": "third-party-cookies",
+      "score": 0,
+      "title": "Uses third-party cookies",
+      "display": "2 cookies found"
+    },
+    {
+      "id": "mainthread-work-breakdown",
+      "score": 0.5,
+      "title": "Minimize main-thread work",
+      "display": "2.2 s"
+    },
+    {
+      "id": "color-contrast",
+      "score": 0,
+      "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+      "display": null
+    },
+    {
+      "id": "heading-order",
+      "score": 0,
+      "title": "Heading elements are not in a sequentially-descending order",
+      "display": null
+    },
+    {
+      "id": "link-name",
+      "score": 0,
+      "title": "Links do not have a discernible name",
+      "display": null
+    },
+    {
+      "id": "total-byte-weight",
+      "score": 0.5,
+      "title": "Avoid enormous network payloads",
+      "display": "Total size was 3,182 KiB"
+    },
+    {
+      "id": "unused-css-rules",
+      "score": 0,
+      "title": "Reduce unused CSS",
+      "display": "Est savings of 101 KiB"
+    },
+    {
+      "id": "unused-javascript",
+      "score": 0,
+      "title": "Reduce unused JavaScript",
+      "display": "Est savings of 229 KiB"
+    },
+    {
+      "id": "inspector-issues",
+      "score": 0,
+      "title": "Issues were logged in the `Issues` panel in Chrome Devtools",
+      "display": null
+    },
+    {
+      "id": "cache-insight",
+      "score": 0,
+      "title": "Use efficient cache lifetimes",
+      "display": "Est savings of 102 KiB"
+    },
+    {
+      "id": "font-display-insight",
+      "score": 0,
+      "title": "Font display",
+      "display": "Est savings of 200 ms"
+    },
+    {
+      "id": "image-delivery-insight",
+      "score": 0.5,
+      "title": "Improve image delivery",
+      "display": "Est savings of 23 KiB"
+    },
+    {
+      "id": "lcp-discovery-insight",
+      "score": 0,
+      "title": "LCP request discovery",
+      "display": null
+    },
+    {
+      "id": "legacy-javascript-insight",
+      "score": 0.5,
+      "title": "Legacy JavaScript",
+      "display": "Est savings of 9 KiB"
+    },
+    {
+      "id": "network-dependency-tree-insight",
+      "score": 0,
+      "title": "Network dependency tree",
+      "display": null
+    },
+    {
+      "id": "render-blocking-insight",
+      "score": 0,
+      "title": "Render-blocking requests",
+      "display": "Est savings of 1,660 ms"
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "unused-css-rules",
+      "savingsMs": 450,
+      "savingsBytes": 103880
+    },
+    {
+      "id": "unused-javascript",
+      "savingsMs": 1200,
+      "savingsBytes": 234895
+    }
+  ]
+}

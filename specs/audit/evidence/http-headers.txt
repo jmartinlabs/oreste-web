@@ -1,0 +1,83 @@
+# HTTP headers observed on 2026-11-03 (public requests, no credentials)
+
+## https://www.oresteespinosacampos.es/
+HTTP/2 200 
+date: Tue, 03 Nov 2026 15:59:14 GMT
+content-type: text/html; charset=UTF-8
+vary: Accept-Encoding
+x-powered-by: PHP/8.2.34
+x-ua-compatible: IE=edge
+permissions-policy: private-state-token-redemption=(self "https://www.google.com" "https://www.gstatic.com" "https://recaptcha.net" "https://challenges.cloudflare.com" "https://hcaptcha.com"), private-state-token-issuance=(self "https://www.google.com" "https://www.gstatic.com" "https://recaptcha.net" "https://challenges.cloudflare.com" "https://hcaptcha.com")
+link: <https://www.oresteespinosacampos.es/wp-json/>; rel="https://api.w.org/"
+link: <https://www.oresteespinosacampos.es/wp-json/wp/v2/pages/2673>; rel="alternate"; title="JSON"; type="application/json"
+link: <https://www.oresteespinosacampos.es/>; rel=shortlink
+etag: W/"2-1792789720;gz"
+x-litespeed-cache: hit
+platform: hostinger
+panel: hpanel
+content-security-policy: upgrade-insecure-requests
+age: 395936
+server: hcdn
+alt-svc: h3=":443"; ma=86400
+x-hcdn-request-id: 786379ae2d5c0affc96af36aaa0b6a2f-fra-edge10
+x-hcdn-cache-status: HIT
+
+
+## http://oresteespinosacampos.es/ (apex)
+HTTP/1.1 301 Moved Permanently
+Date: Tue, 03 Nov 2026 15:59:14 GMT
+Content-Type: text/html
+Content-Length: 795
+Connection: keep-alive
+location: https://oresteespinosacampos.es/
+platform: hostinger
+panel: hpanel
+content-security-policy: upgrade-insecure-requests
+Age: 1132
+Server: hcdn
+alt-svc: h3=":443"; ma=86400
+x-hcdn-request-id: 4c5d5fa7be27a0b4a05467a4dbd00f63-fra-edge9
+x-hcdn-cache-status: MISS
+x-hcdn-upstream-rt: 0.012
+
+
+## https://oresteespinosacampos.es/ (apex)
+HTTP/2 301 
+date: Tue, 03 Nov 2026 15:59:14 GMT
+content-type: text/html; charset=UTF-8
+content-length: 0
+location: https://www.oresteespinosacampos.es/
+x-powered-by: PHP/8.2.35
+x-ua-compatible: IE=edge
+permissions-policy: private-state-token-redemption=(self "https://www.google.com" "https://www.gstatic.com" "https://recaptcha.net" "https://challenges.cloudflare.com" "https://hcaptcha.com"), private-state-token-issuance=(self "https://www.google.com" "https://www.gstatic.com" "https://recaptcha.net" "https://challenges.cloudflare.com" "https://hcaptcha.com")
+x-redirect-by: WordPress
+x-litespeed-cache: hit
+platform: hostinger
+panel: hpanel
+content-security-policy: upgrade-insecure-requests
+age: 277303
+server: hcdn
+alt-svc: h3=":443"; ma=86400
+x-hcdn-request-id: eab3f1505835e6d37adc9908d51337b9-fra-edge6
+x-hcdn-cache-status: HIT
+
+
+## https://www.oresteespinosacampos.es/pagina-inexistente-xyz/ (404)
+HTTP/2 404 
+date: Tue, 03 Nov 2026 15:59:15 GMT
+content-type: text/html; charset=UTF-8
+vary: Accept-Encoding
+x-powered-by: PHP/8.2.35
+expires: Wed, 11 Jan 1984 05:00:00 GMT
+cache-control: no-cache, must-revalidate, max-age=0, no-store, private
+x-ua-compatible: IE=edge
+permissions-policy: private-state-token-redemption=(self "https://www.google.com" "https://www.gstatic.com" "https://recaptcha.net" "https://challenges.cloudflare.com" "https://hcaptcha.com"), private-state-token-issuance=(self "https://www.google.com" "https://www.gstatic.com" "https://recaptcha.net" "https://challenges.cloudflare.com" "https://hcaptcha.com")
+link: <https://www.oresteespinosacampos.es/wp-json/>; rel="https://api.w.org/"
+x-litespeed-cache: hit
+platform: hostinger
+panel: hpanel
+content-security-policy: upgrade-insecure-requests
+server: hcdn
+alt-svc: h3=":443"; ma=86400
+x-hcdn-request-id: d9d2d3757bdf96d88630f4472425db43-fra-edge9
+

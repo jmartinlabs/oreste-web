@@ -1,0 +1,29 @@
+url,type,status_2026_11_03,indexable,decision,new_url,redirect,priority,notes
+https://www.oresteespinosacampos.es/,page,200,yes,preserve,https://www.oresteespinosacampos.es/,-,P0,Portada; destino final tras eliminar la cadena actual de dos saltos
+https://www.oresteespinosacampos.es/blog/,page,200,yes,redirect,https://www.oresteespinosacampos.es/trabajos/,301,P0,Índice de entradas; se sustituye por el hub de trabajos (pendiente de aprobar)
+https://www.oresteespinosacampos.es/category/trabajos/,archive,200,yes,redirect,https://www.oresteespinosacampos.es/trabajos/,301,P1,Archivo duplicado del hub
+https://www.oresteespinosacampos.es/category/blog/,archive,200,yes,redirect,https://www.oresteespinosacampos.es/trabajos/,301,P1,Archivo duplicado; metadescripción en inglés
+https://www.oresteespinosacampos.es/remodelacion-integral-de-bano/,post,200,yes,preserve,https://www.oresteespinosacampos.es/remodelacion-integral-de-bano/,-,P0,Proyecto; conservar slug exacto
+https://www.oresteespinosacampos.es/renovacion-total-de-chalet-pintura-y-limpieza-para-un-acabado-impecable/,post,200,yes,preserve,https://www.oresteespinosacampos.es/renovacion-total-de-chalet-pintura-y-limpieza-para-un-acabado-impecable/,-,P0,Proyecto; slug largo pero conservar
+https://www.oresteespinosacampos.es/renovacion-de-suelo-en-cocina-industrial-durabilidad-y-funcionalidad/,post,200,yes,preserve,https://www.oresteespinosacampos.es/renovacion-de-suelo-en-cocina-industrial-durabilidad-y-funcionalidad/,-,P0,Proyecto; conservar slug exacto
+https://www.oresteespinosacampos.es/revitalizacion-exterior-transformacion-completa-de-la-fachada-limpieza-reparacion-y-pintura-en-blanco/,post,200,yes,preserve,https://www.oresteespinosacampos.es/revitalizacion-exterior-transformacion-completa-de-la-fachada-limpieza-reparacion-y-pintura-en-blanco/,-,P0,Proyecto; conservar slug exacto
+https://www.oresteespinosacampos.es/rapida-reforma-azulejos-cocina/,post,200,yes,preserve,https://www.oresteespinosacampos.es/rapida-reforma-azulejos-cocina/,-,P0,Proyecto; conservar slug exacto
+https://www.oresteespinosacampos.es/<proyecto>/<adjunto>/,attachment,301,no,redirect,proyecto padre,301,P2,34 URLs del attachment-sitemap; hoy redirigen al archivo y no son indexables
+https://www.oresteespinosacampos.es/feed/,feed,200,no,retire,-,410,P3,410 salvo que se apruebe RSS; entonces 301 a /feed.xml
+https://www.oresteespinosacampos.es/comments/feed/,feed,200,no,retire,-,410,P3,Sin comentarios en la web nueva
+https://www.oresteespinosacampos.es/sitemap.xml,sitemap,200,no,replace,https://www.oresteespinosacampos.es/sitemap-index.xml,301,P2,Compatibilidad con el sitemap de AIOSEO
+https://www.oresteespinosacampos.es/sitemap_index.xml,sitemap,200,no,replace,https://www.oresteespinosacampos.es/sitemap-index.xml,301,P3,Variante de AIOSEO
+https://www.oresteespinosacampos.es/wp-json/,api,200,no,retire,-,410,P3,API de WordPress; ya no existe
+https://www.oresteespinosacampos.es/xmlrpc.php,api,unknown,no,retire,-,410,P3,Deshabilitar en la web nueva
+https://www.oresteespinosacampos.es/contacto/,page,-,-,new,https://www.oresteespinosacampos.es/contacto/,-,P1,Página nueva con teléfono WhatsApp email dirección y mapa
+https://www.oresteespinosacampos.es/servicios/,page,-,-,new,https://www.oresteespinosacampos.es/servicios/,-,P1,Hub de servicios
+https://www.oresteespinosacampos.es/servicios/pintura-interior-exterior/,page,-,-,new,https://www.oresteespinosacampos.es/servicios/pintura-interior-exterior/,-,P1,Página nueva; requiere datos verificados
+https://www.oresteespinosacampos.es/servicios/pintura-de-fachadas/,page,-,-,new,https://www.oresteespinosacampos.es/servicios/pintura-de-fachadas/,-,P1,Página nueva; requiere datos verificados
+https://www.oresteespinosacampos.es/servicios/alicatado-y-soleria/,page,-,-,new,https://www.oresteespinosacampos.es/servicios/alicatado-y-soleria/,-,P1,Página nueva; requiere datos verificados
+https://www.oresteespinosacampos.es/servicios/reforma-de-banos/,page,-,-,new,https://www.oresteespinosacampos.es/servicios/reforma-de-banos/,-,P1,Página nueva; requiere datos verificados
+https://www.oresteespinosacampos.es/servicios/reforma-de-cocinas/,page,-,-,new,https://www.oresteespinosacampos.es/servicios/reforma-de-cocinas/,-,P1,Página nueva; requiere datos verificados
+https://www.oresteespinosacampos.es/servicios/mantenimiento-general/,page,-,-,new,https://www.oresteespinosacampos.es/servicios/mantenimiento-general/,-,P1,Página nueva; requiere datos verificados
+https://www.oresteespinosacampos.es/trabajos/,page,-,-,new,https://www.oresteespinosacampos.es/trabajos/,-,P1,Hub de casos de estudio
+https://www.oresteespinosacampos.es/aviso-legal/,page,-,-,new,https://www.oresteespinosacampos.es/aviso-legal/,-,P0,Obligatorio LSSI-CE
+https://www.oresteespinosacampos.es/privacidad/,page,-,-,new,https://www.oresteespinosacampos.es/privacidad/,-,P0,Obligatorio RGPD/LOPDGDD
+https://www.oresteespinosacampos.es/cookies/,page,-,-,new,https://www.oresteespinosacampos.es/cookies/,-,P0,Obligatorio y enlazado desde el banner

@@ -1,0 +1,22 @@
+# URL status matrix observed on 2026-11-03
+# format: status  final_url
+200  https://www.oresteespinosacampos.es/
+200  https://www.oresteespinosacampos.es/blog/
+200  https://www.oresteespinosacampos.es/category/trabajos/
+200  https://www.oresteespinosacampos.es/category/blog/
+200  https://www.oresteespinosacampos.es/remodelacion-integral-de-bano/
+200  https://www.oresteespinosacampos.es/renovacion-total-de-chalet-pintura-y-limpieza-para-un-acabado-impecable/
+200  https://www.oresteespinosacampos.es/renovacion-de-suelo-en-cocina-industrial-durabilidad-y-funcionalidad/
+200  https://www.oresteespinosacampos.es/revitalizacion-exterior-transformacion-completa-de-la-fachada-limpieza-reparacion-y-pintura-en-blanco/
+200  https://www.oresteespinosacampos.es/rapida-reforma-azulejos-cocina/
+200  https://www.oresteespinosacampos.es/wp-content/uploads/2025/10/reforma-integral-bano-despues1.jpg
+200  https://www.oresteespinosacampos.es/feed/
+200  https://www.oresteespinosacampos.es/sitemap.xml
+200  https://www.oresteespinosacampos.es/wp-json/
+405  https://www.oresteespinosacampos.es/xmlrpc.php
+
+# sitemap inventory
+page-sitemap: 1 URL
+post-sitemap: 6 URLs (incl. /blog/)
+category-sitemap: 2 URLs
+attachment-sitemap: 34 URLs

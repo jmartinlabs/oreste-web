@@ -8,7 +8,7 @@ https://www.oresteespinosacampos.es/renovacion-total-de-chalet-pintura-y-limpiez
 https://www.oresteespinosacampos.es/renovacion-de-suelo-en-cocina-industrial-durabilidad-y-funcionalidad/,post,200,yes,preserve,https://www.oresteespinosacampos.es/renovacion-de-suelo-en-cocina-industrial-durabilidad-y-funcionalidad/,-,P0,Proyecto; conservar slug exacto
 https://www.oresteespinosacampos.es/revitalizacion-exterior-transformacion-completa-de-la-fachada-limpieza-reparacion-y-pintura-en-blanco/,post,200,yes,preserve,https://www.oresteespinosacampos.es/revitalizacion-exterior-transformacion-completa-de-la-fachada-limpieza-reparacion-y-pintura-en-blanco/,-,P0,Proyecto; conservar slug exacto
 https://www.oresteespinosacampos.es/rapida-reforma-azulejos-cocina/,post,200,yes,preserve,https://www.oresteespinosacampos.es/rapida-reforma-azulejos-cocina/,-,P0,Proyecto; conservar slug exacto
-https://www.oresteespinosacampos.es/<proyecto>/<adjunto>/,attachment,301,no,redirect,proyecto padre,301,P2,34 URLs del attachment-sitemap; hoy redirigen al archivo y no son indexables
+https://www.oresteespinosacampos.es/<proyecto>/<adjunto>/,attachment,301,no,redirect,https://www.oresteespinosacampos.es/<proyecto>/,301,P2,34 URLs del attachment-sitemap; hoy redirigen al archivo y no son indexables
 https://www.oresteespinosacampos.es/feed/,feed,200,no,retire,-,410,P3,410 salvo que se apruebe RSS; entonces 301 a /feed.xml
 https://www.oresteespinosacampos.es/comments/feed/,feed,200,no,retire,-,410,P3,Sin comentarios en la web nueva
 https://www.oresteespinosacampos.es/sitemap.xml,sitemap,200,no,replace,https://www.oresteespinosacampos.es/sitemap-index.xml,301,P2,Compatibilidad con el sitemap de AIOSEO

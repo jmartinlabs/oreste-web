@@ -1,7 +1,13 @@
 # Plan de reconstrucción — Fase 1
 
 Estado: **PROPUESTA para revisión**. No autoriza desarrollo, despliegue ni cambios en WordPress.
-Fecha: 2026-11-03. Base: auditoría de la web actual y research técnico delegado.
+Fecha: 2026-11-03; actualizado tras confirmar Hostinger como destino definitivo.
+
+Documentos de detalle:
+
+- Arquitectura de hosting y despliegue: [`architecture/hosting-and-deployment.md`](architecture/hosting-and-deployment.md)
+- Migración desde WordPress: [`migration/wordpress-to-astro.md`](migration/wordpress-to-astro.md)
+- Auditoría y evidencia: [`audit/current-site-audit.md`](audit/current-site-audit.md)
 
 ## 0. Resumen
 
@@ -14,8 +20,22 @@ publicarlos.
 La estrategia es deliberadamente pequeña: **una portada, seis páginas de servicio, un hub de
 trabajos, cinco casos de estudio, contacto y tres páginas legales**. Se conservan exactamente la
 portada y los cinco slugs de proyecto; `/blog/` y los archivos de categoría se redirigen con 301
-salvo que se apruebe mantener un blog (D3). No se toca WordPress hasta la fase de publicación y
-sólo con autorización expresa.
+salvo que se apruebe mantener un blog (D3). La publicación se probará primero en un subdominio de
+preproducción y después en `public_html`, con copia previa y rollback probado. No se toca
+WordPress hasta la fase de publicación y sólo con autorización expresa.
+
+### Requisitos incorporados en la actualización del 2026-11-03
+
+| Requisito | Dónde se resuelve |
+| --- | --- |
+| 1. Compatibilidad de Astro estático con el plan actual | [`architecture/hosting-and-deployment.md`](architecture/hosting-and-deployment.md) §1–§4; D1 |
+| 2. Entorno de preproducción por subdominio | Arquitectura de hosting §5; D13 |
+| 3. Procedimiento de `dist/` en `public_html` | Arquitectura de hosting §6–§7 |
+| 4. Migración segura con copia, URLs, 301 y rollback | [`migration/wordpress-to-astro.md`](migration/wordpress-to-astro.md) §3–§10 |
+| 5. Publicación futura con GitHub Actions y aprobación | Arquitectura de hosting §10; fase 6 |
+
+Todo lo que depende del plan real queda marcado como **pendiente**; no se asume ninguna
+capacidad. No se ha modificado WordPress, DNS ni Hostinger, y no se ha desplegado nada.
 
 ## 1. Objetivo y criterios de aceptación
 
@@ -32,7 +52,9 @@ Criterios medibles (se detallarán en la especificación de cada fase):
 | Contenido | Cero «Lorem ipsum»; español de España; datos verificados por el propietario |
 | Legal | Aviso legal, privacidad y cookies; analítica sólo con consentimiento |
 | Operación | Publicación reproducible; copia previa; rollback probado; agente sin permiso de publicar |
-| Hosting | `dist/` funciona en Hostinger compartido sin Node; HTTPS y 301 verificados |
+| Preproducción | Subdominio aislado, `noindex`, autenticación básica y SSL verificado |
+| Migración | Copia verificada, 301 sin cadenas, restauración probada y WordPress conservado |
+| Hosting | `dist/` se sirve desde Hostinger compartido sin Node; HTTPS y 301 verificados en staging y producción |
 
 ## 2. Principios
 
@@ -44,7 +66,9 @@ Criterios medibles (se detallarán en la especificación de cada fase):
 5. **Aprobación humana explícita.** Ningún agente publica, borra, renombra ni despliega.
 6. **Una sola fuente de verdad.** NAP en `src/data/site.ts`; URLs en el frontmatter; decisiones
    en `specs/`.
-7. **Compatible con Hostinger.** Nada que requiera Node, procesos persistentes o base de datos.
+7. **Nada se asume sobre el hosting.** Cada capacidad se marca como observada, documentada o
+   pendiente; si falta información, se documenta y se espera a verificarla.
+8. **Compatible con Hostinger.** Nada que requiera Node, procesos persistentes o base de datos.
 
 ## 3. Stack propuesto
 
@@ -72,8 +96,8 @@ de componentes, jQuery, Font Awesome, Google Fonts remotas.
 - Generación estática completa en build (`astro build` → `dist/`).
 - HTML por página en `dist/<ruta>/index.html`, gracias a `build.format: 'directory'` y
   `trailingSlash: 'always'`.
-- Apache/LiteSpeed sirve `index.html` mediante `DirectoryIndex`; las URLs antiguas con barra
-  final se conservan sin reescrituras.
+- El servidor debe servir `index.html` como índice de directorio; se verifica en el spike de
+  compatibilidad. Las URLs antiguas con barra final se conservan sin reescrituras.
 - Sin funciones serverless, sin API, sin base de datos. El único código de servidor opcional
   sería un pequeño endpoint PHP para el formulario, y sólo si se aprueba (ver 4.7).
 
@@ -270,12 +294,13 @@ Requisito del usuario: verificar compatibilidad con Hostinger compartido.
 | --- | --- | --- | --- | --- |
 | Sin formulario: teléfono, WhatsApp y correo clicables | Total (HTML) | 0 | Ninguno | **Recomendada para el lanzamiento** |
 | Endpoint PHP propio + SMTP de Hostinger | Sí (PHP disponible; no requiere Node) | 0 | Spam, mantenimiento, mala configuración SMTP | Aceptable si el propietario exige formulario |
-| Servicio externo (Web3Forms, Formspree) | Sí (POST desde HTML) | 0–gratis con límite | Transferencia de datos a terceros, dependencia | Alternativa si se quiere evitar PHP |
+| Servicio externo de formularios | Requiere cuenta y servicio nuevo | — | Dependencia y transferencia de datos | **No permitido en esta fase** por la restricción de no contratar servicios adicionales |
 | Formulario sólo JavaScript | No fiable | — | Usuarios sin JS, spam | Descartada |
 
 Decisión propuesta: **lanzar sin formulario** y medir llamadas/WhatsApp. Si se aprueba un
 formulario, hacerlo en fase 6 con endpoint PHP + SMTP, honeypot, límite por IP, validación en
-servidor, consentimiento RGPD y correo `Reply-To` del visitante. Nunca subida de archivos.
+servidor, consentimiento RGPD y correo `Reply-To` del visitante. Nunca subida de archivos y
+ningún servicio externo.
 
 Otras funcionalidades: galería con lightbox (isla opcional), mapa de Google embebido sólo tras
 consentimiento o como enlace estático, y ningún chat en vivo.
@@ -284,8 +309,8 @@ consentimiento o como enlace estático, y ningún chat en vivo.
 
 - Situación actual: dos etiquetas GA4 cargando a la vez, sin banner ni consentimiento.
 - Propuesta: **una sola** propiedad GA4 con Consent Mode v2 y banner ligero que bloquee
-  analítica hasta la aceptación; o, si el propietario prefiere cero cookies, Cloudflare Web
-  Analytics / Plausible.
+  analítica hasta la aceptación; o, si el propietario prefiere cero cookies, renunciar a la
+  analítica y trabajar sólo con Search Console. **No se añaden servicios nuevos.**
 - Search Console y Google Business Profile son obligatorios para SEO local, con o sin GA4.
 - El banner debe permitir «Rechazar» con la misma visibilidad que «Aceptar» y enlazar a
   `/cookies/`.
@@ -329,7 +354,7 @@ consentimiento o como enlace estático, y ningún chat en vivo.
 | `/category/trabajos/` | `/trabajos/` | Archivo duplicado |
 | `/category/blog/` | `/trabajos/` | Archivo duplicado y metadescripción en inglés |
 | `/sitemap.xml`, `/sitemap_index.xml` | `/sitemap-index.xml` | Compatibilidad con AIOSEO |
-| `/feed/` | `/feed.xml` (si se publica RSS) | Feed nuevo |
+| `/feed/` | `410 Gone` (o `/feed.xml` si se aprueba RSS) | Feed nuevo |
 | `/comments/feed/`, `/wp-json/`, `/xmlrpc.php` | `410 Gone` | Ya no existen |
 
 Si el propietario quiere mantener un blog, la alternativa es conservar `/blog/` como sección de
@@ -338,119 +363,29 @@ prueban con `scripts/check-redirects.mjs` contra una lista cerrada.
 
 Inventario completo: [`audit/url-inventory.csv`](audit/url-inventory.csv).
 
-## 6. Hosting y despliegue en Hostinger
+## 6. Hosting, preproducción y despliegue
 
-### 6.1 Hechos observados y límites a verificar
+El detalle operativo vive en [`architecture/hosting-and-deployment.md`](architecture/hosting-and-deployment.md).
+Resumen:
 
-Lo observado directamente en la web (cabeceras del 2026-11-03):
-
-- `platform: hostinger`, `panel: hpanel`, `server: hcdn`, `x-litespeed-cache: hit`,
-  `x-powered-by: PHP/8.2.35`, HTTP/2 y HTTP/3. Es hosting compartido con LiteSpeed y CDN.
-
-Lo que afirma la documentación oficial de Hostinger y **debe confirmarse en hPanel**:
-
-- Los sitios estáticos funcionan en todos los planes web; `public_html` es el directorio público
-  y se puede subir un ZIP desde el Administrador de archivos.
-- **Node.js no está en el plan Premium**; sólo en Unlimited/Cloud. No lo necesitamos: Astro
-  compila en local o en GitHub Actions y produce archivos estáticos.
-- SSH/SFTP está en Premium y superiores; el puerto aparece como 22 en una guía y 65002 en otra.
-  `rsync` no está documentado. **Probar ambos.**
-- El despliegue Git de hPanel no ejecuta `npm run build`; sirve el contenido de la rama tal cual.
-- `.htaccess` es compatible (LiteSpeed emula Apache): `Redirect 301`, `ErrorDocument`,
-  `DirectoryIndex`, cabeceras y compresión.
-- SSL gratuito con renovación automática por dominio; HTTPS se fuerza desde hPanel.
-- Copias automáticas semanales en Premium y diarias en Unlimited, según la documentación; la
-  copia manual puede requerir un plan superior.
-- PHP está disponible para un formulario, pero `mail()` tiene mala entregabilidad; usar SMTP.
-
-Fuentes consultadas el 2026-11-03: <https://docs.hostinger.com/websites/file-manager.md>,
-<https://docs.hostinger.com/websites/ssl.md>, <https://docs.hostinger.com/websites/backups.md>,
-<https://docs.hostinger.com/websites/git.md>, <https://docs.hostinger.com/websites/redirects.md>,
-<https://www.hostinger.com/support/1583645-how-to-enable-ssh-access-in-hostinger/> y
-<https://www.hostinger.com/support/11393648-php-mail-limitation-explained-how-to-improve-email-delivery-with-smtp/>.
-
-El plan exacto es **desconocido** y es el único bloqueo real para fijar el método definitivo.
-
-### 6.2 Método manual (fase 5, antes de automatizar)
-
-1. Confirmar plan, SSH, backups y directorio raíz en hPanel.
-2. Congelar cambios de WordPress y generar copia: backup de Hostinger + `tar.gz` local de
-   `public_html` + exportación SQL, guardados **fuera** de `public_html`.
-3. Construir en local: `npm ci && npm run build`.
-4. Validar `dist/`: `npm run preview`, enlaces, 301, 404, Lighthouse y revisión visual.
-5. Publicar primero en un subdominio de preproducción (`staging.oresteespinosacampos.es` o
-   `nuevo.oresteespinosacampos.es`), con `noindex` y autenticación básica. Esto **no toca** la
-   web actual y permite aprobar sobre el hosting real.
-6. Tras la aprobación escrita, mover el WordPress actual fuera de `public_html` (nunca borrarlo)
-   y subir el contenido de `dist/` a `public_html`, incluido `.htaccess`.
-7. Purgar la caché de LiteSpeed y la CDN; verificar HTTPS, `www`, 301, 404, sitemap y formulario
-   (si existe).
-8. Enviar el sitemap a Search Console y comprobar el estado durante 48 horas.
-
-### 6.3 Checklist previo en hPanel (bloqueante para D1)
-
-- [ ] Nombre exacto del plan y fecha de renovación.
-- [ ] SSH activo, puerto real y disponibilidad de `rsync`.
-- [ ] Directorio raíz real (`public_html` vs `domains/<dominio>/public_html`).
-- [ ] Frecuencia y retención de backups; botón de copia manual disponible.
-- [ ] SSL activo, renovación automática y opción «forzar HTTPS».
-- [ ] Estado de la caché LiteSpeed y de la CDN.
-- [ ] DNS: nameservers de Hostinger o externos; registros MX que no se deben tocar.
-- [ ] Correo: buzones existentes y límites de envío SMTP.
-- [ ] Confirmar que el WordPress actual no se modifica hasta la autorización de migración.
-
-### 6.4 HTTPS, redirecciones y cabeceras
-
-- Un solo salto: `http://oresteespinosacampos.es` → `https://www.oresteespinosacampos.es/`.
-  Evitar la cadena actual de dos saltos.
-- Forzar `www` de forma canónica; el ápice redirige.
-- HSTS sólo después de comprobar todos los subdominios; empezar con `max-age` corto y subir.
-- 404 personalizado a `/404.html`, sin redirección blanda.
-- `DirectoryIndex index.html` y `Options -MultiViews` para que las rutas limpias funcionen.
-- Cabeceras de seguridad y caché descritas en 4.9 y 4.6.
-
-### 6.5 Copias y rollback
-
-- Antes del corte: backup de Hostinger + archivo local + exportación de la base de datos.
-- Después del corte: conservar la copia 30 días y una copia semanal externa.
-- Rollback manual: restaurar el `tar.gz` en `public_html` y purgar caché (≈ 5 minutos).
-- Rollback automatizado (fase 6): conservar los 5 últimos artefactos de GitHub Actions y
-  redesplegar el artefacto anterior con `workflow_dispatch`.
-- Probar el rollback una vez en preproducción antes de confiar en él.
-
-### 6.6 Publicación automatizada futura (fase 6, sólo tras aprobación)
-
-Diseño propuesto, a validar contra el plan real:
-
-```text
-Pull Request → CI (check + build + enlaces + Lighthouse)
-             → preview en staging
-             → aprobación humana del PR
-             → merge a main
-             → job build (artefacto site-<sha>)
-             → environment "production" con revisor obligatorio
-             → deploy por rsync/SSH o SFTP
-             → purga de caché + smoke test
-```
-
-- `concurrency: deploy-production` y `cancel-in-progress: false`.
-- Secretos en el environment `production`, nunca en el repositorio.
-- Host key de SSH fijada; no aceptar claves desconocidas.
-- Si no hay SSH/rsync: acción SFTP oficial mantenida, con FTPS si el plan lo permite (el FTP
-  plano no es aceptable para credenciales).
-- El job de despliegue **exige aprobación manual**; un merge no publica por sí solo.
-- Alternativa oficial: publicar `dist/` en una rama `deploy` y dejar que hPanel la sirva. Evita
-  credenciales FTP, pero ensucia el historial y no permite borrar archivos obsoletos con
-  facilidad. Se evalúa en fase 6.
-- El repositorio es público hoy: los secretos de entorno no se exponen a PRs de forks, pero
-  conviene revisar la visibilidad antes de activar despliegues.
-
-### 6.7 Formularios y correo
-
-- Si se aprueba formulario: endpoint PHP en `public/contacto.php`, SMTP autenticado del dominio,
-  `From` fijo, `Reply-To` del visitante, honeypot, límite por IP y validación estricta.
-- Si se usa servicio externo: revisar RGPD, encargado de tratamiento y transferencia internacional.
-- Sin formulario: `tel:`, `mailto:` y `https://wa.me/34672659923` como enlaces reales.
+- **Compatibilidad:** Astro estático sólo necesita servir archivos; no requiere Node, base de
+  datos ni procesos persistentes. La web actual ya sirve CSS, JS e imágenes desde Hostinger,
+  pero **el plan exacto no está verificado**. No se asume ninguna capacidad: la matriz marca
+  cada requisito como observado, documentado o pendiente de comprobar en hPanel (D1).
+- **Preproducción:** subdominio `staging.oresteespinosacampos.es`, directorio aislado, SSL,
+  `noindex` y autenticación básica (SSL pendiente de D1; ver
+  [`architecture/hosting-and-deployment.md`](architecture/hosting-and-deployment.md) §5). No se
+  crea en la fase 1; implica DNS y requiere autorización.
+- **Despliegue:** artefacto `dist/` validado, publicación primero en staging y después en
+  `public_html`, con copia previa y ventana de baja actividad. Sólo se sube el contenido de
+  `dist/`, nunca fuentes, `node_modules`, `specs/` ni `.git`.
+- **HTTPS y 301:** un solo salto a `https://www.oresteespinosacampos.es/`; redirecciones en
+  `.htaccess`; HSTS sólo después de verificar todos los subdominios.
+- **Copias y rollback:** backup de Hostinger + archivo fuera de `public_html` + exportación de la
+  base de datos; restauración probada; WordPress conservado 30 días.
+- **Automatización (fase 6):** GitHub Actions con environment `production`, revisor obligatorio
+  y artefacto reversible; sólo si SSH/SFTP está disponible y el repositorio lo permite.
+- **Formularios:** sin formulario o PHP+SMTP; no se contrata ningún servicio adicional.
 
 ## 7. Flujo de actualización de contenido mediante agentes
 
@@ -471,7 +406,8 @@ Pull Request → CI (check + build + enlaces + Lighthouse)
 4. Ejecuta `npm run validate` (tipos, esquema, imágenes, enlaces, build).
 5. Abre una Pull Request con resumen, fuente de cada dato, número de fotos y enlace de preview.
    **Se detiene aquí.**
-6. CI construye y publica una preview en `staging`.
+6. CI construye el artefacto. La preview en staging se despliega bajo demanda con un workflow
+   autorizado desde la rama, nunca automáticamente desde PRs de forks.
 7. El propietario revisa en móvil y escritorio; el responsable técnico revisa el diff.
 8. Un humano aprueba y hace merge. El agente no aprueba ni fusiona.
 9. El job de producción espera aprobación del environment y despliega.
@@ -510,62 +446,24 @@ Pull Request → CI (check + build + enlaces + Lighthouse)
 
 - **Recomendada:** subdominio `staging.oresteespinosacampos.es` en el mismo Hostinger, `noindex`,
   autenticación básica y despliegue manual o por `workflow_dispatch`. No afecta a producción.
-- **Alternativa sin tocar Hostinger:** Cloudflare Pages gratuito conectado al repo, sólo para
-  previews de PR. Añade una cuenta y una dependencia externa.
-- **Mínimo viable:** build local + capturas; no sirve para que el propietario revise en su móvil.
+- **Alternativa si no hay subdominio:** build local con `astro preview` y capturas, o un
+  directorio temporal protegido con `noindex`. No se añaden servicios externos de hosting.
+- **Mínimo viable:** build local + capturas de móvil y escritorio; suficiente para elegir la
+  dirección visual en fase 2, no para aprobar el contenido definitivo del propietario.
 
-## 8. Plan de migración de contenido y URLs
+## 8. Migración desde WordPress
 
-### 8.1 Exportación de sólo lectura
+El detalle vive en [`migration/wordpress-to-astro.md`](migration/wordpress-to-astro.md). Resumen:
 
-- Fuente: API REST de WordPress (`pages`, `posts`, `media`, `categories`) y HTML renderizado.
-- No se instala nada en WordPress, no se modifican plugins ni temas, no se accede a la base de
-  datos.
-- Guardar la exportación en `migration/` **fuera del control de versiones** mientras el
-  repositorio sea público. Al autorizar la implementación se añadirá `migration/` a `.gitignore`;
-  esta fase no modifica `.gitignore`. Incluir un manifiesto de fecha y URLs.
-- Repetir la exportación justo antes del corte para capturar cambios.
-
-### 8.2 Reescritura
-
-- Convertir HTML a Markdown limpiando shortcodes y clases de Elementor.
-- Reescribir en español de España, con acentos, frases cortas y estructura escaneable.
-- Crear las seis páginas de servicio a partir de una entrevista con el propietario: qué incluye,
-  materiales, plazos, zona, garantía y proceso. **No inventar.**
-- Convertir las cinco entradas en casos de estudio con ficha (municipio, tipo, servicios, fecha).
-- Corregir «Malaga», «Sobre mi», «¿Que hacemos?», «concina» y demás erratas.
-- Sustituir «Lorem ipsum» por contenido real o eliminar el bloque.
-- Enlazar cada proyecto con los servicios usados y cada servicio con proyectos reales.
-
-### 8.3 Medios
-
-- Descargar originales; seleccionar los mejores; descartar duplicados y miniaturas.
-- Renombrar de forma semántica (`reforma-bano-mijas-despues-01.jpg`).
-- Eliminar metadatos EXIF/GPS por privacidad.
-- Redimensionar a 2000 px máximo y generar AVIF/WebP en build.
-- Comprimir o sustituir el vídeo de 12 MB.
-- Pedir al propietario originales de mayor calidad y autorización escrita de uso.
-- Obtener un logo vectorial (SVG) o reconstruirlo; el actual es un JPEG de 332×117.
-
-### 8.4 Verificación
-
-- Matriz de URLs: cada URL antigua responde 200 (conservada) o 301 (redirigida), sin cadenas.
-- Rastreo de enlaces internos sin 404.
-- Validador de datos estructurados (Schema Markup Validator / Rich Results Test).
-- Lighthouse móvil ×3 y comparación con la línea base.
-- Revisión ortográfica y de tono.
-- Revisión visual del propietario en móvil y escritorio.
-- Comprobación de accesibilidad con teclado y contraste.
-
-### 8.5 Corte y rollback
-
-1. Copia completa y verificada.
-2. Publicación en staging y aprobación escrita.
-3. Corte en producción en ventana de baja actividad.
-4. Smoke test: portada, servicios, proyectos, contacto, 301, 404, sitemap, HTTPS, formulario.
-5. Search Console: sitemap y comprobación de indexación.
-6. Vigilancia 48 h; rollback si hay errores críticos.
-7. WordPress se conserva 30 días fuera de `public_html` y luego se decide su retirada.
+- Exportación de sólo lectura por la API REST; WordPress no se modifica ni se actualiza.
+- Copia completa (archivos + base de datos) fuera de `public_html`, verificada y con prueba de
+  restauración antes del corte.
+- Conservación de la portada y los cinco slugs de proyecto; 301 para `/blog/`, categorías,
+  adjuntos, feeds y sitemaps.
+- Reescritura y medios en la fase 4; verificación con matriz de URLs, enlaces, schema y
+  Lighthouse.
+- Corte en ventana de baja actividad, smoke test, Search Console y vigilancia 48 h.
+- Rollback documentado y probado; WordPress se conserva 30 días y no se borra sin autorización.
 
 ## 9. Fases y roadmap propuesto
 
@@ -585,9 +483,10 @@ Objetivo: elegir una dirección antes de construir.
 
 Ambas se prototipan de verdad en Astro + Tailwind (no sólo imágenes): portada, una página de
 servicio y un caso de estudio, en móvil y escritorio, con **el mismo contenido real** para que la
-comparación sea justa. Entregables: dos URLs de preview, ficha comparativa, tokens de diseño y
-decisión registrada. **Sin migración completa ni publicación.** Salida: dirección elegida por el
-propietario.
+comparación sea justa. Entregables: dos prototipos ejecutables y comparables, ficha comparativa,
+tokens de diseño y decisión registrada. La previsualización será local (build + capturas) salvo
+que D1/D13 ya estén autorizados y exista staging; no se crea infraestructura nueva para la fase 2.
+**Sin migración completa ni publicación.** Salida: dirección elegida por el propietario.
 
 Criterios de comparación, en este orden: claridad de la propuesta en 5 segundos, confianza y
 cercanía, calidad percibida del trabajo, facilidad para contactar desde el móvil, diferenciación
@@ -601,12 +500,16 @@ se sustituye antes de la fase 4. D7 no es un requisito de entrada: **es la salid
 
 ### Fase 3 — Fundaciones y esqueleto
 
+- Verificar D1 en hPanel (sólo lectura) y registrar la matriz de compatibilidad real.
+- Con autorización, crear el subdominio de preproducción (D13), su SSL y su protección.
 - Crear el proyecto Astro, Tailwind 4, TypeScript estricto, estructura y `site.ts`.
 - Implementar layout, header, footer, SEO, JSON-LD, 404, sitemap y `.htaccess` base.
 - Implementar el sistema visual de la dirección elegida y tres páginas reales.
+- Ejecutar el spike de compatibilidad: rutas con barra final, 301, 404, MIME, HTTPS y caché.
 - CI: `astro check`, build, enlaces y Lighthouse.
 - Despliegue a staging y línea base de rendimiento.
-- Salida: staging navegable, checks verdes, aprobación del esqueleto.
+- Salida: staging navegable, checks verdes, matriz de compatibilidad cumplida y aprobación del
+  esqueleto.
 
 ### Fase 4 — Contenido, SEO local y migración
 
@@ -619,20 +522,21 @@ se sustituye antes de la fase 4. D7 no es un requisito de entrada: **es la salid
 
 ### Fase 5 — Publicación controlada
 
-- Checklist de hPanel, copia, corte, HTTPS/HSTS, 301, caché, Search Console, GBP.
+- Checklist de hPanel, copia completa, restauración de prueba y exportación final.
+- Corte con el runbook, HTTPS/HSTS, 301, caché, Search Console y Google Business Profile.
 - Prueba de rollback y vigilancia 48 h.
-- Salida: producción aprobada y verificada.
+- Salida: producción aprobada, verificada y reversible.
 
 ### Fase 6 — Automatización y traspaso
 
-- GitHub Actions con environment protegido y despliegue aprobado.
+- GitHub Actions con environment protegido y despliegue aprobado, sólo si D1 confirma SSH/SFTP.
 - Documentación para el propietario y para agentes.
 - Formulario, si se aprueba; analítica definitiva; mantenimiento.
 - Salida: un cambio de contenido completo realizado por un agente y aprobado por un humano.
 
-### Correspondencia con el roadmap de 4 epics (para aprobar en la etapa 6 de setup)
+### Correspondencia con el roadmap de 4 épicas (para aprobar en la etapa 6 de setup)
 
-| Epic | Fases incluidas | Resultado observable |
+| Épica | Fases incluidas | Resultado observable |
 | --- | --- | --- |
 | 01 Fundaciones y sistema visual | 2–3 | Sitio base en staging con dirección visual aprobada |
 | 02 Contenido, SEO local y migración | 4 | Contenido real migrado, URLs y schema verificados |
@@ -643,12 +547,14 @@ se sustituye antes de la fase 4. D7 no es un requisito de entrada: **es la salid
 
 | Riesgo | Probabilidad | Impacto | Mitigación |
 | --- | --- | --- | --- |
-| Plan de Hostinger sin SSH/rsync | Media | Medio | Verificar D1; usar FTP/FTPS o rama `deploy` |
+| Plan de Hostinger sin SSH/rsync | Media | Medio | Verificar D1; usar SFTP/FTPS o despliegue manual |
+| Plan sin subdominios o sin SSL de subdominio | Baja | Medio | Verificar D1/D13; previsualización local y ZIP como alternativa |
+| Cambios accidentales de DNS o MX | Baja | Alto | Prohibidos en fase 1; checklist y autorización en fase 5 |
 | Pérdida de URLs o SEO al migrar | Media | Alto | Inventario completo y probado, 301 verificados, staging, Search Console |
 | Contenido insuficiente o no verificado | Alta | Alto | Entrevista estructurada; no inventar; publicar sólo lo confirmado |
 | Fotos de baja calidad o sin derechos | Alta | Medio | Pedir originales y autorización escrita |
 | Repositorio público con datos del cliente | Media | Medio | Decidir visibilidad; no commitear exportaciones ni datos personales |
-| Dos propuestas visuales eternas | Media | Medio | Timebox de una iteración por propuesta y decisión registrada |
+| Dos propuestas visuales eternas | Media | Medio | Límite de tiempo de una iteración por propuesta y decisión registrada |
 | Regresiones de rendimiento | Baja | Medio | Presupuesto y Lighthouse en CI |
 | Caché LiteSpeed sirviendo versiones antiguas | Media | Bajo | Purga tras cada despliegue y verificación con `curl` |
 | Formulario con spam o mala entregabilidad | Media | Medio | Sin formulario al lanzar; SMTP + honeypot + límite si se aprueba |
@@ -660,18 +566,21 @@ se sustituye antes de la fase 4. D7 no es un requisito de entrada: **es la salid
 
 | ID | Pregunta | Opciones | Recomendación | Bloquea |
 | --- | --- | --- | --- | --- |
-| D1 | ¿Qué plan de Hostinger hay y permite SSH? | Premium / Unlimited / otro | Verificar en hPanel; no fijar método hasta entonces | Despliegue |
+| D1 | ¿Qué plan hay y permite ruta `public_html`, subdominios, SSL de subdominio, SSH y backups? | Premium / Unlimited / otro | Verificar en hPanel; no asumir ninguna capacidad | Staging y despliegue |
 | D2 | ¿El repositorio debe seguir siendo público? | Público / privado | Privado; si sigue público, prohibir datos personales y exportaciones | Contenido y secretos |
-| D3 | ¿Se conserva `/blog/` o se redirige? | Conservar / 301 a `/trabajos/` | 301 si no habrá blog; conservar si habrá artículos | URLs y SEO |
+| D3 | ¿Se conserva `/blog/` o se redirige? | Conservar / 301 a `/trabajos/` | 301 si no habrá blog; conservar si habrá artículos | Fase 2 (entrada), URLs y SEO |
 | D4 | ¿Se aprueban seis páginas de servicio? | 4 / 6 / otra | Seis, con datos verificados | Contenido (fase 4 y textos de fase 2) |
-| D5 | ¿Formulario de contacto? | Ninguno / PHP+SMTP / externo | Ninguno al lanzar; revisar en fase 6 | Alcance |
-| D6 | ¿Analítica? | GA4 con consentimiento / sin cookies | GA4 con Consent Mode v2 o Cloudflare Analytics | Legal y rendimiento |
+| D5 | ¿Formulario de contacto? | Ninguno / PHP+SMTP | Ninguno al lanzar; revisar en fase 6 | Alcance |
+| D6 | ¿Analítica? | GA4 con consentimiento / sin analítica | GA4 con Consent Mode v2 o ninguna; sin servicios nuevos | Legal y rendimiento |
 | D7 | ¿Dirección visual? | A / B | Decidir tras ver ambas propuestas | Fase 2 (salida) |
 | D8 | ¿Quién redacta y aprueba los textos legales? | Propietario / asesor / coordinador | Revisión humana antes de publicar | Lanzamiento |
 | D9 | ¿Fotos y logo originales? | Reutilizar / pedir originales | Pedir originales y autorización | Migración |
 | D10 | ¿Reseñas y Google Business Profile? | Sí / no | Sí, sólo reseñas reales | SEO local |
 | D11 | ¿Automatización de despliegue? | Ahora / después | Después del lanzamiento, con aprobación | Fase 6 |
 | D12 | ¿Copias y retención? | Hostinger / externa | Backup manual + archivo local + artefactos CI | Publicación |
+| D13 | ¿Nombre del subdominio y autorización DNS? | `staging.` / `nuevo.` | `staging.oresteespinosacampos.es`; no se crea en fase 1 | Preproducción |
+| D14 | ¿Ventana de corte y quién aprueba? | Horario / fin de semana | Fuera de horario comercial; propietario + responsable técnico | Publicación |
+| D15 | ¿Método final de despliegue? | SSH/rsync / SFTP / manual | Elegir tras D1; automatizar sólo con canal seguro | Fase 6 |
 
 ## 12. Anexo: checklist de aceptación de la fase 1
 
@@ -680,9 +589,16 @@ se sustituye antes de la fase 4. D7 no es un requisito de entrada: **es la salid
 - [x] Problemas de diseño, navegación, contenido y SEO identificados con evidencia.
 - [x] Arquitectura Astro propuesta y justificada.
 - [x] Flujo de contenido con agentes definido, con límites explícitos.
-- [x] Plan de migración sin pérdida de URLs ni contenido.
+- [x] Plan de migración sin pérdida de URLs con valor; el resto se redirige con 301 si D3 lo
+      aprueba.
 - [x] Fases definidas, incluidas dos propuestas visuales para la fase 2.
 - [x] Requisitos de Hostinger incorporados: estático, `public_html`, HTTPS, 301, copias y
       compatibilidad de formularios.
-- [x] Sin desarrollo, sin cambios en WordPress, sin hosting, sin repositorios nuevos, sin merges.
+- [x] Compatibilidad de Astro estático analizada; capacidades del plan marcadas como pendientes
+      de D1 en lugar de asumidas.
+- [x] Preproducción por subdominio diseñada, sin crearla.
+- [x] Runbook de `dist/` → `public_html` y rollback documentados; se probará en fase 5.
+- [x] Publicación automatizada diseñada con aprobación humana, sin implementarla.
+- [x] Sin desarrollo, sin cambios en WordPress/DNS/Hostinger, sin servicios nuevos, sin
+      repositorios nuevos, sin despliegues ni merges.
 - [ ] Aprobación humana de la fase 1 y de las decisiones D1–D4; D7 se decide en la fase 2.

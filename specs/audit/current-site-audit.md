@@ -209,9 +209,13 @@ Causas concretas:
 ### 3.7 Alojamiento observado
 
 - `platform: hostinger`, `panel: hpanel`, `server: hcdn`, `x-litespeed-cache: hit`,
-  `x-powered-by: PHP/8.2.35`, HTTP/2 y HTTP/3 (`alt-svc: h3`).
+  `x-powered-by: PHP/8.2.34 o 8.2.35 según la respuesta`, HTTP/2 y HTTP/3 (`alt-svc: h3`).
 - **Plan exacto desconocido.** Es el dato que falta para fijar el método de despliegue
-  (SSH, backups, Git y límites varían entre Premium y Unlimited).
+  (SSH, backups, Git, subdominios y límites varían entre planes).
+- **Compatibilidad de Astro estático no verificada.** La web actual sirve assets estáticos desde
+  Hostinger, pero no se puede confirmar que el plan contratado cumpla todos los requisitos hasta
+  revisar hPanel. La matriz y el procedimiento están en
+  [`../architecture/hosting-and-deployment.md`](../architecture/hosting-and-deployment.md).
 - El dominio responde en `www`; el ápice redirige a `www`.
 
 ## 4. Oportunidades de la reconstrucción
@@ -261,7 +265,8 @@ Método:
    vectorial, datos de contacto verificados, horario, zona de servicio y reseñas reales.
 3. La migración de WordPress es **sólo de lectura** y se puede hacer por API REST; no se toca
    la instalación actual.
-4. El despliegue en Hostinger es compatible con Astro estático; el único bloqueo es conocer el
-   plan para elegir SSH/rsync o FTP.
+4. El despliegue en Hostinger es compatible con Astro estático en principio, pero **requiere
+   verificar el plan** (D1) y probar rutas, 301, MIME y SSL de subdominio en staging antes de
+   fijar el método. Ver [`../architecture/hosting-and-deployment.md`](../architecture/hosting-and-deployment.md).
 5. La fase 2 debe resolver **dos direcciones visuales** antes de construir componentes
    definitivos.

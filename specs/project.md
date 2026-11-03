@@ -43,7 +43,8 @@ contratar, en Mijas y la Costa del Sol».
 - Arquitectura Astro estática, Tailwind CSS y TypeScript.
 - SEO local, datos estructurados, sitemap, canonical y conservación de URLs.
 - Páginas legales y consentimiento de cookies.
-- Publicación en el hosting compartido de Hostinger, conservando el dominio.
+- Publicación en la misma cuenta y dominio de Hostinger, con preproducción por subdominio,
+  copia de seguridad, 301 y rollback probado.
 - Procedimiento manual de publicación y estudio de automatización posterior con aprobación.
 - Flujo de actualización de contenido mediante agentes, sin CMS.
 
@@ -51,7 +52,8 @@ contratar, en Mijas y la Costa del Sol».
 
 - Desarrollo de la web nueva durante la fase 1.
 - Cualquier cambio en la instalación de WordPress actual.
-- Configuración de hosting, DNS o dominio.
+- Configuración de hosting, DNS o dominio durante la fase 1.
+- Contratación de servicios adicionales.
 - Creación de repositorios remotos, cambios de visibilidad o merges sin autorización.
 - Modificación de Agentic Template (skills, metodología, scripts, workflows).
 - CMS, base de datos, SSR, Node.js en producción, área privada o e-commerce.
@@ -66,16 +68,20 @@ técnico se trasladará a `guidelines/architecture.md`.
 | --- | --- | --- |
 | Astro + Tailwind CSS + TypeScript | Confirmada | Usuario |
 | `output: 'static'`; sin Node.js en producción | Confirmada | Usuario |
-| Hosting definitivo: Hostinger compartido actual | Confirmada | Usuario |
+| Hosting definitivo: **la misma cuenta** de Hostinger y el **mismo dominio** | Confirmada | Usuario, 2026-11-03 |
 | Dominio: `oresteespinosacampos.es` (con `www`) | Confirmada | Usuario / web actual |
+| Sin cambios de DNS, SSL ni configuración de Hostinger en fase 1 | Confirmada | Usuario, 2026-11-03 |
+| Sin contratar servicios adicionales | Confirmada | Usuario, 2026-11-03 |
+| Compatibilidad del plan no asumida: lo no comprobado queda pendiente | Confirmada | Usuario, 2026-11-03 |
 | Sin CMS; contenido en archivos gestionado por agentes | Confirmada | Usuario |
 | Publicación sólo tras aprobación humana | Confirmada | Usuario |
 | No tocar WordPress hasta autorizar la migración | Confirmada | Usuario |
 | Implementación ligera, adecuada a una web corporativa pequeña | Confirmada | Usuario |
 | Repositorio: `jmartinlabs/oreste-web` | Confirmada | Usuario; `origin` verificado 2026-11-03 |
 
-Decisiones abiertas relacionadas: D2 (visibilidad del repositorio), D3 (`/blog/`), D4 (páginas de
-servicio) y D7 (dirección visual). Ver [`setup-progress.md`](setup-progress.md#pending-decisions).
+Decisiones abiertas relacionadas: D1 (plan real y capacidades), D2 (visibilidad del
+repositorio), D3 (`/blog/`), D4 (páginas de servicio), D7 (dirección visual), D13 (subdominio) y
+D14 (ventana de corte). Ver [`setup-progress.md`](setup-progress.md#pending-decisions).
 
 ## 4. Referencias
 
@@ -85,6 +91,9 @@ servicio) y D7 (dirección visual). Ver [`setup-progress.md`](setup-progress.md#
 - Auditoría: [`audit/current-site-audit.md`](audit/current-site-audit.md)
 - Inventario de URLs: [`audit/url-inventory.csv`](audit/url-inventory.csv)
 - Inventario de medios: [`audit/asset-inventory.csv`](audit/asset-inventory.csv)
+- Arquitectura de hosting y despliegue:
+  [`architecture/hosting-and-deployment.md`](architecture/hosting-and-deployment.md)
+- Migración desde WordPress: [`migration/wordpress-to-astro.md`](migration/wordpress-to-astro.md)
 - Plan de fase 1: [`phase-1-plan.md`](phase-1-plan.md)
 - Progreso: [`setup-progress.md`](setup-progress.md)
 
@@ -98,11 +107,13 @@ servicio) y D7 (dirección visual). Ver [`setup-progress.md`](setup-progress.md#
 4. Cero JavaScript imprescindible para navegar y ver contenido; islas sólo si aportan.
 5. Datos estructurados `HousePainter`/`LocalBusiness` válidos y NAP idéntico en toda la web.
 6. Aviso legal, privacidad y cookies publicados; analítica sólo tras consentimiento.
-7. Publicación en Hostinger con copia de seguridad previa, procedimiento de rollback probado y
-   aprobación humana registrada.
+7. Publicación en la misma cuenta de Hostinger, con preproducción en subdominio, copia de
+   seguridad verificada, 301 sin cadenas y rollback probado antes del corte.
 8. Un agente puede añadir un proyecto con fotos, validar el cambio y abrir una PR sin poder
    publicar ni modificar contenido existente por su cuenta.
 9. Documentación suficiente para que otra sesión retome el proyecto sin este chat.
+10. La matriz de compatibilidad del plan está verificada en hPanel y con un spike desplegado en
+    staging; lo no disponible se documenta como limitación, no se asume.
 
 ## 6. Preguntas abiertas
 

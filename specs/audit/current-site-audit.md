@@ -229,7 +229,7 @@ Causas concretas:
 4. **Rendimiento 95–100 móvil** con HTML estático, CSS crítico mínimo, imágenes AVIF/WebP y
    cero JavaScript innecesario.
 5. **Conservación de URLs** de portada y de los cinco proyectos; `/blog/` y las categorías se
-   redirigen con 301 a `/trabajos/` salvo que se apruebe mantener un blog (decisión D3).
+   redirigen con 301 a `/trabajos/` (D3 resuelta; redirecciones planificadas, no aplicadas).
 6. **Legalidad desde el día uno**: aviso legal, privacidad, cookies y consentimiento previo.
 7. **Canal directo**: botón de llamada y WhatsApp visibles en móvil.
 

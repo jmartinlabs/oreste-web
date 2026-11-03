@@ -1,14 +1,14 @@
 url,type,status_2026_11_03,indexable,decision,new_url,redirect,priority,notes
 https://www.oresteespinosacampos.es/,page,200,yes,preserve,https://www.oresteespinosacampos.es/,-,P0,Portada; destino final tras eliminar la cadena actual de dos saltos
-https://www.oresteespinosacampos.es/blog/,page,200,yes,redirect,https://www.oresteespinosacampos.es/trabajos/,301,P0,Índice de entradas; se sustituye por el hub de trabajos (pendiente de aprobar)
-https://www.oresteespinosacampos.es/category/trabajos/,archive,200,yes,redirect,https://www.oresteespinosacampos.es/trabajos/,301,P1,Archivo duplicado del hub
-https://www.oresteespinosacampos.es/category/blog/,archive,200,yes,redirect,https://www.oresteespinosacampos.es/trabajos/,301,P1,Archivo duplicado; metadescripción en inglés
+https://www.oresteespinosacampos.es/blog/,page,200,yes,redirect,https://www.oresteespinosacampos.es/trabajos/,301,P0,D3 aprobada en planificación; 301 a /trabajos/; no aplicar hasta fase 5
+https://www.oresteespinosacampos.es/category/trabajos/,archive,200,yes,redirect,https://www.oresteespinosacampos.es/trabajos/,301,P1,Archivo duplicado del hub; D3 aprobada; no aplicar hasta fase 5
+https://www.oresteespinosacampos.es/category/blog/,archive,200,yes,redirect,https://www.oresteespinosacampos.es/trabajos/,301,P1,Archivo duplicado y metadescripción en inglés; D3 aprobada; no aplicar hasta fase 5
 https://www.oresteespinosacampos.es/remodelacion-integral-de-bano/,post,200,yes,preserve,https://www.oresteespinosacampos.es/remodelacion-integral-de-bano/,-,P0,Proyecto; conservar slug exacto
 https://www.oresteespinosacampos.es/renovacion-total-de-chalet-pintura-y-limpieza-para-un-acabado-impecable/,post,200,yes,preserve,https://www.oresteespinosacampos.es/renovacion-total-de-chalet-pintura-y-limpieza-para-un-acabado-impecable/,-,P0,Proyecto; slug largo pero conservar
 https://www.oresteespinosacampos.es/renovacion-de-suelo-en-cocina-industrial-durabilidad-y-funcionalidad/,post,200,yes,preserve,https://www.oresteespinosacampos.es/renovacion-de-suelo-en-cocina-industrial-durabilidad-y-funcionalidad/,-,P0,Proyecto; conservar slug exacto
 https://www.oresteespinosacampos.es/revitalizacion-exterior-transformacion-completa-de-la-fachada-limpieza-reparacion-y-pintura-en-blanco/,post,200,yes,preserve,https://www.oresteespinosacampos.es/revitalizacion-exterior-transformacion-completa-de-la-fachada-limpieza-reparacion-y-pintura-en-blanco/,-,P0,Proyecto; conservar slug exacto
 https://www.oresteespinosacampos.es/rapida-reforma-azulejos-cocina/,post,200,yes,preserve,https://www.oresteespinosacampos.es/rapida-reforma-azulejos-cocina/,-,P0,Proyecto; conservar slug exacto
-https://www.oresteespinosacampos.es/<proyecto>/<adjunto>/,attachment,301,no,redirect,https://www.oresteespinosacampos.es/<proyecto>/,301,P2,34 URLs del attachment-sitemap; hoy redirigen al archivo y no son indexables
+https://www.oresteespinosacampos.es/<proyecto>/<adjunto>/,attachment,301,no,redirect,https://www.oresteespinosacampos.es/<proyecto>/,301,P2,34 URLs del attachment-sitemap; D3 aprobada; no aplicar hasta fase 5
 https://www.oresteespinosacampos.es/feed/,feed,200,no,retire,-,410,P3,410 salvo que se apruebe RSS; entonces 301 a /feed.xml
 https://www.oresteespinosacampos.es/comments/feed/,feed,200,no,retire,-,410,P3,Sin comentarios en la web nueva
 https://www.oresteespinosacampos.es/sitemap.xml,sitemap,200,no,replace,https://www.oresteespinosacampos.es/sitemap-index.xml,301,P2,Compatibilidad con el sitemap de AIOSEO

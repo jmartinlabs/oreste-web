@@ -37,7 +37,9 @@ Antes de cualquier cambio en producción:
    local o en el subdominio de preproducción.
 6. **Correo**: confirmar que los registros MX no se modifican y que los buzones siguen activos.
 
-La copia se conserva 30 días como mínimo y se documenta su ubicación y fecha.
+La copia se conserva 30 días como mínimo y se documenta su ubicación y fecha. **D2: el
+repositorio es público.** Las copias, exportaciones SQL y archivos de WordPress se guardan fuera
+de Git; nunca en GitHub ni en `specs/`.
 
 ## 4. Exportación de contenido (sólo lectura)
 
@@ -106,6 +108,10 @@ Reglas:
 
 Inventario completo y prioridades en [`audit/url-inventory.csv`](../audit/url-inventory.csv).
 
+**D3 resuelta en planificación:** la sección será `/trabajos/`, `/blog/` se redirige con 301 y se
+conservan las URLs individuales de los proyectos. **No se aplica ninguna redirección todavía**;
+se implementarán y probarán en la fase 5, nunca en fase 1 o 2.
+
 ## 7. Preproducción y aprobación
 
 1. Desplegar el build en `staging.oresteespinosacampos.es` (ver
@@ -161,6 +167,7 @@ en preproducción antes del corte.
 - Modificar WordPress, plugins, temas o base de datos.
 - Cambiar DNS, MX, SSL o configuración de Hostinger.
 - Crear el subdominio o desplegar en staging.
+- Aplicar redirecciones 301 antes de la autorización de migración.
 - Contratar servicios adicionales.
 - Publicar, fusionar o borrar contenido.
 - Introducir Node.js en producción.

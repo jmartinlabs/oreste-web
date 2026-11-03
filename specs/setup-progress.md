@@ -4,6 +4,8 @@ Current stage: 1
 
 Fase 1 (auditoría y plan) está **completada como evidencia**, no como aprobación. Los
 documentos de identidad, tecnología y arquitectura son propuestas que esperan revisión humana.
+La resolución parcial de decisiones del 2026-11-03 reduce bloqueos, pero no aprueba la fase 1 ni
+autoriza la fase 2.
 
 | Stage | Status | Evidence / canonical decision links |
 | --- | --- | --- |
@@ -17,8 +19,8 @@ documentos de identidad, tecnología y arquitectura son propuestas que esperan r
 
 ## Confirmed decisions
 
-Fuente: instrucciones del usuario (2026-11-03). El detalle está en
-[`project.md`](project.md#3-restricciones-y-decisiones-confirmadas).
+Fuente: instrucciones del usuario (2026-11-03), incluida la resolución parcial de decisiones.
+El detalle está en [`project.md`](project.md#3-restricciones-y-decisiones-confirmadas).
 
 - Astro + Tailwind CSS + TypeScript, `output: 'static'`.
 - Hosting definitivo: **la misma cuenta** de Hostinger y el **mismo dominio**
@@ -26,36 +28,48 @@ Fuente: instrucciones del usuario (2026-11-03). El detalle está en
 - Sin Node.js en producción; publicación de `dist/` en `public_html`.
 - Sin cambios de DNS, SSL ni configuración de Hostinger durante la fase 1.
 - Sin contratar servicios adicionales.
-- Compatibilidad del plan no asumida: lo no comprobado queda pendiente de D1.
 - Sin CMS; contenido en archivos, actualizado por agentes con aprobación humana.
 - WordPress actual intacto hasta autorización expresa de migración.
 - Fase 1 limitada a auditoría y planificación; sin desarrollo ni despliegue.
 - Repositorio `jmartinlabs/oreste-web`; sin merges ni cambios remotos sin aprobación.
+- **D1 (parcial):** Hostinger se mantiene; verificar plan, SSH y backups antes de configurar
+  staging. No bloquear el diseño por esta información.
+- **D2:** mantener el repositorio **público**; no incluir secretos, credenciales, backups de
+  WordPress ni contenido privado.
+- **D3:** la sección nueva será `/trabajos/`; 301 desde `/blog/`; conservar preferentemente las
+  URLs individuales de los proyectos. No aplicar redirecciones todavía.
+- **D4 (parcial):** estructura de las páginas de servicio preparada en
+  [`content/service-pages-structure.md`](content/service-pages-structure.md); no inventar
+  información y señalar los datos que necesitan confirmación.
+- **D7 (parcial):** presentar dos propuestas visuales diferenciadas y elegir antes de implementar
+  el diseño definitivo.
+- **D11:** priorizar un despliegue manual verificable; GitHub Actions queda para una fase
+  posterior.
 
-## Pending decisions
+## Decision status
 
-Numeración estable para referencias. Detalle, opciones y recomendación en
-[`phase-1-plan.md`](phase-1-plan.md#11-decisiones-pendientes).
-
-| ID | Decisión | Bloquea | Recomendación |
+| ID | Estado | Decisión | Bloquea |
 | --- | --- | --- | --- |
-| D1 | Plan exacto, ruta pública, subdominios, SSL, SSH y backups | Staging y despliegue | Verificar en hPanel; no asumir capacidades |
-| D2 | Visibilidad del repositorio (hoy público) | Contenido y secretos | Privado, o público sólo con datos no sensibles |
-| D3 | Arquitectura de URLs: `/blog/` y categorías → 301 a `/trabajos/` | Fase 2 (entrada), URLs y SEO | 301, conservando portada y 5 proyectos |
-| D4 | Páginas de servicio (6) y datos verificados de cada una | Contenido (fase 4 y textos de fase 2) | 6 páginas; entrevista previa al propietario |
-| D5 | Formulario de contacto: ninguno o PHP+SMTP | Alcance de fase 6 | Lanzar sin formulario; decidir después |
-| D6 | Analítica: GA4 con consentimiento o sin analítica | Legal y rendimiento | GA4 con Consent Mode v2 o ninguna; sin servicios nuevos |
-| D7 | Dirección visual (fase 2) | Fase 2 (salida) | Dos propuestas, elección del propietario |
-| D8 | Contenido legal y responsable del tratamiento | Lanzamiento | Redactar y revisar antes de publicar |
-| D9 | Uso de fotos, vídeo y logo originales | Migración | Pedir originales y autorización de uso |
-| D10 | Reseñas/testimonios y enlace a Google Business Profile | Contenido local | Sólo reseñas reales y verificables |
-| D11 | Automatización de despliegue con GitHub Actions | Fase 6 | Después del lanzamiento y con aprobación; verificar revisor obligatorio según plan/visibilidad |
-| D12 | Estrategia de copias y rollback en Hostinger | Publicación | Backup manual + archivo local + artefacto de CI |
-| D13 | Nombre del subdominio y autorización DNS | Preproducción | `staging.oresteespinosacampos.es`; no se crea en fase 1 |
-| D14 | Ventana de corte y aprobador | Publicación | Fuera de horario comercial; propietario + técnico |
-| D15 | Método final de despliegue | Fase 6 | SSH/rsync, SFTP o manual según D1 |
+| D1 | Parcial | Hostinger definitivo; plan, SSH y backups por verificar antes de staging | Staging y despliegue; **no** el diseño |
+| D2 | Resuelta | Repositorio público sin secretos, credenciales, backups ni contenido privado | Nada |
+| D3 | Resuelta en planificación | `/trabajos/` + 301 desde `/blog/`; conservar proyectos; no aplicar aún | Nada; implementación en fase 5 |
+| D4 | Parcial | Estructura de servicios preparada; datos por confirmar sin inventar | Contenido final (fase 4); fase 2 con marcadores provisionales |
+| D5 | Pendiente | Formulario: ninguno o PHP+SMTP | Fase 6 |
+| D6 | Pendiente | Analítica: GA4 con consentimiento o sin analítica | Lanzamiento |
+| D7 | Parcial | Dos propuestas visuales; elección antes de implementar | Fase 2 (salida) |
+| D8 | Pendiente | Contenido legal y responsable del tratamiento | Lanzamiento |
+| D9 | Pendiente | Fotos, vídeo y logo originales | Migración |
+| D10 | Pendiente | Reseñas y Google Business Profile | Contenido local |
+| D11 | Resuelta | Despliegue manual primero; automatización después | Fase 6 |
+| D12 | Pendiente | Copias y rollback en Hostinger | Publicación |
+| D13 | Pendiente | Subdominio y autorización DNS | Staging |
+| D14 | Pendiente | Ventana de corte y aprobador | Publicación |
+| D15 | Pendiente | Método final de despliegue | Fase 6 |
 
 ## Next action
 
-Revisar el informe de fase 1 y responder a D3 y D4 antes de autorizar la fase 2. D1 y D13 son
-necesarias antes de la fase 3 (staging). La dirección visual (D7) se decide al final de la fase 2.
+La fase 2 **no ha comenzado** y requiere autorización explícita. Cuando se autorice, empezar por
+las dos propuestas visuales A/B con contenido provisional marcado, sin crear staging ni aplicar
+redirecciones. Ninguna decisión pendiente bloquea el inicio de la fase 2: D1 y D13 sólo son
+necesarias antes de la fase 3 (staging); D4 se completará con la entrevista de contenido; D7 se
+decide al final de la fase 2.

@@ -20,7 +20,7 @@ publicarlos.
 La estrategia es deliberadamente pequeña: **una portada, seis páginas de servicio, un hub de
 trabajos, cinco casos de estudio, contacto y tres páginas legales**. Se conservan exactamente la
 portada y los cinco slugs de proyecto; `/blog/` y los archivos de categoría se redirigen con 301
-salvo que se apruebe mantener un blog (D3). La publicación se probará primero en un subdominio de
+a `/trabajos/` (D3 resuelta). La publicación se probará primero en un subdominio de
 preproducción y después en `public_html`, con copia previa y rollback probado. No se toca
 WordPress hasta la fase de publicación y sólo con autorización expresa.
 
@@ -241,6 +241,10 @@ Ningún servicio desaparece. «Fontanería y electricidad» y «pequeñas reform
 parte del mantenimiento, no como especialidades independientes, salvo que el propietario confirme
 que quiere posicionarlas por separado. Los diez servicios deben validarse en la entrevista (D4).
 
+La estructura concreta de cada página, los bloques obligatorios y los datos que necesitan
+confirmación están en [`content/service-pages-structure.md`](content/service-pages-structure.md).
+No se inventa ningún dato: lo desconocido se marca como `[confirmar]`.
+
 ### 4.4 Layouts y componentes
 
 - `Base.astro`: `<html lang="es">`, skip link, header, `<main>`, footer, estilos globales, SEO y
@@ -323,8 +327,8 @@ consentimiento o como enlace estático, y ningún chat en vivo.
   `Permissions-Policy` restrictiva y `X-Frame-Options: SAMEORIGIN`.
 - Sin `X-Powered-By` si el hosting lo permite; sin listado de directorios.
 - `.htaccess` con `Options -Indexes` y bloqueo de archivos sensibles (`.env`, `.git`, `*.md`).
-- Repositorio: decidir visibilidad (hoy público). Si sigue público, no commitear datos
-  personales, exportaciones de WordPress ni secretos.
+- Repositorio público (D2): no commitear secretos, credenciales, exportaciones ni datos
+  personales. Revisar cada cambio antes de publicarlo.
 - Credenciales de despliegue sólo en GitHub Environments/Secrets, nunca en el repo.
 - Dependencias: `npm ci`, lockfile, Dependabot opcional y revisión mensual.
 
@@ -357,9 +361,10 @@ consentimiento o como enlace estático, y ningún chat en vivo.
 | `/feed/` | `410 Gone` (o `/feed.xml` si se aprueba RSS) | Feed nuevo |
 | `/comments/feed/`, `/wp-json/`, `/xmlrpc.php` | `410 Gone` | Ya no existen |
 
-Si el propietario quiere mantener un blog, la alternativa es conservar `/blog/` como sección de
-artículos y no redirigir; se decide en D3. Las redirecciones se implementan en `.htaccess` y se
-prueban con `scripts/check-redirects.mjs` contra una lista cerrada.
+D3 resuelta: `/trabajos/` será la sección; `/blog/` y sus categorías se redirigen con 301 y las
+URLs individuales de los proyectos se conservan. **No se aplica ninguna redirección en fase 1 ni
+en fase 2**: se implementarán y probarán en la fase 5. Las redirecciones se implementan en
+`.htaccess` y se prueban con `scripts/check-redirects.mjs` contra una lista cerrada.
 
 Inventario completo: [`audit/url-inventory.csv`](audit/url-inventory.csv).
 
@@ -481,6 +486,9 @@ Objetivo: elegir una dirección antes de construir.
 - **Propuesta B — «Precisión luminosa»**: blancos y piedra caliza, azul profundo, retícula clara,
   datos visibles (años, plazos, m²), estética mediterránea y técnica; transmite orden y rapidez.
 
+No serán variantes de color: difieren en paleta, tipografía, retícula, tono y jerarquía visual. El
+propietario elige entre ambas antes de que se implemente el diseño definitivo.
+
 Ambas se prototipan de verdad en Astro + Tailwind (no sólo imágenes): portada, una página de
 servicio y un caso de estudio, en móvil y escritorio, con **el mismo contenido real** para que la
 comparación sea justa. Entregables: dos prototipos ejecutables y comparables, ficha comparativa,
@@ -493,10 +501,11 @@ cercanía, calidad percibida del trabajo, facilidad para contactar desde el móv
 frente a competidores locales, accesibilidad y coste de mantenimiento. Cada propuesta incluye
 portada, página de servicio, caso de estudio, menú móvil, pie, botones y estados de foco.
 
-La fase 2 no empieza hasta que el propietario confirme D3 y D4 y aporte el material mínimo
-(textos verificados, fotos y logo). D1 sólo es necesario antes de la fase 3 (staging) y de la
-fase 5 (publicación). Si falta material, se prototipa con contenido marcado como provisional y
-se sustituye antes de la fase 4. D7 no es un requisito de entrada: **es la salida de la fase 2**.
+La fase 2 **no ha comenzado** y requiere autorización explícita del propietario. D3 está
+resuelta y D4 tiene la estructura preparada en
+[`content/service-pages-structure.md`](content/service-pages-structure.md): no hay que esperar a
+D1/D13, que sólo son necesarias antes de la fase 3 (staging). El material que falte se marca como
+provisional. D7 no es un requisito de entrada: **es la salida de la fase 2**.
 
 ### Fase 3 — Fundaciones y esqueleto
 
@@ -522,6 +531,7 @@ se sustituye antes de la fase 4. D7 no es un requisito de entrada: **es la salid
 
 ### Fase 5 — Publicación controlada
 
+- **Despliegue manual verificable** con el runbook de hosting; la automatización no es requisito.
 - Checklist de hPanel, copia completa, restauración de prueba y exportación final.
 - Corte con el runbook, HTTPS/HSTS, 301, caché, Search Console y Google Business Profile.
 - Prueba de rollback y vigilancia 48 h.
@@ -529,7 +539,8 @@ se sustituye antes de la fase 4. D7 no es un requisito de entrada: **es la salid
 
 ### Fase 6 — Automatización y traspaso
 
-- GitHub Actions con environment protegido y despliegue aprobado, sólo si D1 confirma SSH/SFTP.
+- GitHub Actions con environment protegido y despliegue aprobado, sólo después de que el
+  despliegue manual esté probado y si D1 confirma SSH/SFTP.
 - Documentación para el propietario y para agentes.
 - Formulario, si se aprueba; analítica definitiva; mantenimiento.
 - Salida: un cambio de contenido completo realizado por un agente y aprobado por un humano.
@@ -553,7 +564,7 @@ se sustituye antes de la fase 4. D7 no es un requisito de entrada: **es la salid
 | Pérdida de URLs o SEO al migrar | Media | Alto | Inventario completo y probado, 301 verificados, staging, Search Console |
 | Contenido insuficiente o no verificado | Alta | Alto | Entrevista estructurada; no inventar; publicar sólo lo confirmado |
 | Fotos de baja calidad o sin derechos | Alta | Medio | Pedir originales y autorización escrita |
-| Repositorio público con datos del cliente | Media | Medio | Decidir visibilidad; no commitear exportaciones ni datos personales |
+| Repositorio público con datos del cliente | Media | Medio | D2 resuelta: no commitear exportaciones, backups ni datos personales |
 | Dos propuestas visuales eternas | Media | Medio | Límite de tiempo de una iteración por propuesta y decisión registrada |
 | Regresiones de rendimiento | Baja | Medio | Presupuesto y Lighthouse en CI |
 | Caché LiteSpeed sirviendo versiones antiguas | Media | Bajo | Purga tras cada despliegue y verificación con `curl` |
@@ -562,25 +573,28 @@ se sustituye antes de la fase 4. D7 no es un requisito de entrada: **es la salid
 | Dependencia de Astro 7 reciente | Baja | Medio | Fijar versiones, spike de 2 páginas, lockfile |
 | WordPress roto durante el corte | Baja | Alto | Copia, staging, ventana de baja actividad, rollback probado |
 
-## 11. Decisiones pendientes
+## 11. Decisiones: estado
 
-| ID | Pregunta | Opciones | Recomendación | Bloquea |
-| --- | --- | --- | --- | --- |
-| D1 | ¿Qué plan hay y permite ruta `public_html`, subdominios, SSL de subdominio, SSH y backups? | Premium / Unlimited / otro | Verificar en hPanel; no asumir ninguna capacidad | Staging y despliegue |
-| D2 | ¿El repositorio debe seguir siendo público? | Público / privado | Privado; si sigue público, prohibir datos personales y exportaciones | Contenido y secretos |
-| D3 | ¿Se conserva `/blog/` o se redirige? | Conservar / 301 a `/trabajos/` | 301 si no habrá blog; conservar si habrá artículos | Fase 2 (entrada), URLs y SEO |
-| D4 | ¿Se aprueban seis páginas de servicio? | 4 / 6 / otra | Seis, con datos verificados | Contenido (fase 4 y textos de fase 2) |
-| D5 | ¿Formulario de contacto? | Ninguno / PHP+SMTP | Ninguno al lanzar; revisar en fase 6 | Alcance |
-| D6 | ¿Analítica? | GA4 con consentimiento / sin analítica | GA4 con Consent Mode v2 o ninguna; sin servicios nuevos | Legal y rendimiento |
-| D7 | ¿Dirección visual? | A / B | Decidir tras ver ambas propuestas | Fase 2 (salida) |
-| D8 | ¿Quién redacta y aprueba los textos legales? | Propietario / asesor / coordinador | Revisión humana antes de publicar | Lanzamiento |
-| D9 | ¿Fotos y logo originales? | Reutilizar / pedir originales | Pedir originales y autorización | Migración |
-| D10 | ¿Reseñas y Google Business Profile? | Sí / no | Sí, sólo reseñas reales | SEO local |
-| D11 | ¿Automatización de despliegue? | Ahora / después | Después del lanzamiento, con aprobación | Fase 6 |
-| D12 | ¿Copias y retención? | Hostinger / externa | Backup manual + archivo local + artefactos CI | Publicación |
-| D13 | ¿Nombre del subdominio y autorización DNS? | `staging.` / `nuevo.` | `staging.oresteespinosacampos.es`; no se crea en fase 1 | Preproducción |
-| D14 | ¿Ventana de corte y quién aprueba? | Horario / fin de semana | Fuera de horario comercial; propietario + responsable técnico | Publicación |
-| D15 | ¿Método final de despliegue? | SSH/rsync / SFTP / manual | Elegir tras D1; automatizar sólo con canal seguro | Fase 6 |
+Resolución parcial del 2026-11-03. Ninguna decisión pendiente bloquea la fase 2; D1/D13 sólo son
+necesarias antes del staging y las demás se resolverán cuando toque.
+
+| ID | Estado | Decisión | Bloquea |
+| --- | --- | --- | --- |
+| D1 | Parcial | Hostinger definitivo; verificar plan, SSH y backups antes de staging; no bloquear diseño | Staging y despliegue; no el diseño |
+| D2 | Resuelta | Repositorio público, sin secretos, credenciales, backups ni contenido privado | Nada |
+| D3 | Resuelta en planificación | `/trabajos/` + 301 desde `/blog/`; conservar URLs individuales; no aplicar aún | Nada; implementación en fase 5 |
+| D4 | Parcial | Estructura de seis páginas preparada; datos por confirmar sin inventar | Contenido final (fase 4); fase 2 con marcadores provisionales |
+| D5 | Pendiente | Formulario: ninguno o PHP+SMTP | Fase 6 |
+| D6 | Pendiente | Analítica: GA4 con consentimiento o sin analítica | Lanzamiento |
+| D7 | Parcial | Dos propuestas visuales diferenciadas; elección antes del diseño definitivo | Fase 2 (salida) |
+| D8 | Pendiente | Contenido legal y responsable del tratamiento | Lanzamiento |
+| D9 | Pendiente | Fotos, vídeo y logo originales | Migración |
+| D10 | Pendiente | Reseñas y Google Business Profile | Contenido local |
+| D11 | Resuelta | Despliegue manual verificable primero; automatización después | Fase 6 |
+| D12 | Pendiente | Copias y retención | Publicación |
+| D13 | Pendiente | Subdominio y autorización DNS | Staging |
+| D14 | Pendiente | Ventana de corte y aprobador | Publicación |
+| D15 | Pendiente | Método final de despliegue | Fase 6 |
 
 ## 12. Anexo: checklist de aceptación de la fase 1
 
@@ -589,8 +603,8 @@ se sustituye antes de la fase 4. D7 no es un requisito de entrada: **es la salid
 - [x] Problemas de diseño, navegación, contenido y SEO identificados con evidencia.
 - [x] Arquitectura Astro propuesta y justificada.
 - [x] Flujo de contenido con agentes definido, con límites explícitos.
-- [x] Plan de migración sin pérdida de URLs con valor; el resto se redirige con 301 si D3 lo
-      aprueba.
+- [x] Plan de migración sin pérdida de URLs con valor; el resto se redirige con 301 según D3,
+      planificado pero no aplicado.
 - [x] Fases definidas, incluidas dos propuestas visuales para la fase 2.
 - [x] Requisitos de Hostinger incorporados: estático, `public_html`, HTTPS, 301, copias y
       compatibilidad de formularios.
@@ -599,6 +613,8 @@ se sustituye antes de la fase 4. D7 no es un requisito de entrada: **es la salid
 - [x] Preproducción por subdominio diseñada, sin crearla.
 - [x] Runbook de `dist/` → `public_html` y rollback documentados; se probará en fase 5.
 - [x] Publicación automatizada diseñada con aprobación humana, sin implementarla.
+- [x] Decisiones D1–D4, D7 y D11 registradas; D2, D3 y D11 resueltas.
+- [x] Estructura de servicios preparada sin inventar datos (D4).
 - [x] Sin desarrollo, sin cambios en WordPress/DNS/Hostinger, sin servicios nuevos, sin
       repositorios nuevos, sin despliegues ni merges.
-- [ ] Aprobación humana de la fase 1 y de las decisiones D1–D4; D7 se decide en la fase 2.
+- [ ] Autorización explícita para iniciar la fase 2 (pendiente).

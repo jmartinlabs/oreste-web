@@ -78,22 +78,29 @@ técnico se trasladará a `guidelines/architecture.md`.
 | No tocar WordPress hasta autorizar la migración | Confirmada | Usuario |
 | Implementación ligera, adecuada a una web corporativa pequeña | Confirmada | Usuario |
 | Repositorio: `jmartinlabs/oreste-web` | Confirmada | Usuario; `origin` verificado 2026-11-03 |
+| Repositorio **público**; sin secretos, credenciales, backups ni contenido privado (D2) | Confirmada | Usuario, 2026-11-03 |
+| Hostinger definitivo; plan, SSH y backups se verifican antes de staging y no bloquean diseño (D1, parcial) | Confirmada | Usuario, 2026-11-03 |
+| Sección `/trabajos/` con 301 desde `/blog/`; conservar URLs de proyectos; no aplicar aún (D3) | Confirmada | Usuario, 2026-11-03 |
+| Estructura de seis páginas de servicio, sin inventar datos (D4, parcial) | Confirmada | Usuario, 2026-11-03 |
+| Dos propuestas visuales diferenciadas antes del diseño definitivo (D7, parcial) | Confirmada | Usuario, 2026-11-03 |
+| Despliegue manual verificable primero; automatización después (D11) | Confirmada | Usuario, 2026-11-03 |
 
-Decisiones abiertas relacionadas: D1 (plan real y capacidades), D2 (visibilidad del
-repositorio), D3 (`/blog/`), D4 (páginas de servicio), D7 (dirección visual), D13 (subdominio) y
-D14 (ventana de corte). Ver [`setup-progress.md`](setup-progress.md#pending-decisions).
+Estado completo de D1–D15 en [`setup-progress.md`](setup-progress.md#decision-status).
 
 ## 4. Referencias
 
 - Web actual: <https://www.oresteespinosacampos.es/>
 - Repositorio: <https://github.com/jmartinlabs/oreste-web>. Comprobado con `gh repo view` el
-  2026-11-03: existe, no está vacío y es **público**. La visibilidad es la decisión D2.
+  2026-11-03: existe, no está vacío y es **público**. D2 confirma mantenerlo público, sin
+  secretos, credenciales, backups de WordPress ni contenido privado.
 - Auditoría: [`audit/current-site-audit.md`](audit/current-site-audit.md)
 - Inventario de URLs: [`audit/url-inventory.csv`](audit/url-inventory.csv)
 - Inventario de medios: [`audit/asset-inventory.csv`](audit/asset-inventory.csv)
 - Arquitectura de hosting y despliegue:
   [`architecture/hosting-and-deployment.md`](architecture/hosting-and-deployment.md)
 - Migración desde WordPress: [`migration/wordpress-to-astro.md`](migration/wordpress-to-astro.md)
+- Estructura de páginas de servicio:
+  [`content/service-pages-structure.md`](content/service-pages-structure.md)
 - Plan de fase 1: [`phase-1-plan.md`](phase-1-plan.md)
 - Progreso: [`setup-progress.md`](setup-progress.md)
 
@@ -117,5 +124,5 @@ D14 (ventana de corte). Ver [`setup-progress.md`](setup-progress.md#pending-deci
 
 ## 6. Preguntas abiertas
 
-Ver la lista priorizada en [`phase-1-plan.md`](phase-1-plan.md#11-decisiones-pendientes) y el
-resumen operativo en [`setup-progress.md`](setup-progress.md#pending-decisions).
+Ver la lista priorizada en [`phase-1-plan.md`](phase-1-plan.md#11-decisiones-estado) y el
+resumen operativo en [`setup-progress.md`](setup-progress.md#decision-status).

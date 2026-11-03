@@ -134,6 +134,7 @@ elimina al terminar y se registran los resultados.
 
 **No se crea en fase 1.** Crear el subdominio implica un registro DNS y un cambio en Hostinger,
 acciones prohibidas por las restricciones actuales. Se hará en fase 3 con autorización expresa.
+**D1 no bloquea el diseño ni la fase 2**: sólo debe resolverse antes de configurar staging.
 
 **Si el plan no permite subdominios:** la alternativa es revisar el build en local
 (`astro preview`), generar capturas y un ZIP del artefacto. No se propone ningún servicio externo
@@ -257,8 +258,9 @@ El rollback se prueba una vez en preproducción antes del corte.
 
 ## 10. Publicación automatizada futura (fase 6)
 
-No se implementa en fase 1. Requisitos de entrada: D1 resuelto, SSH/SFTP confirmado, repositorio
-con visibilidad decidida, branch protection y checks verdes.
+No se implementa en fase 1. **D11 resuelta:** el despliegue manual verificable es la prioridad;
+esta automatización es fase 6. Requisitos de entrada: D1 resuelto, SSH/SFTP confirmado,
+repositorio público sin secretos (D2), branch protection y checks verdes.
 
 ```text
 Pull Request → CI de sólo lectura (check + build + enlaces + Lighthouse)
@@ -288,9 +290,8 @@ Reglas:
 - Rollback: `workflow_dispatch` que descarga y redespliega un artefacto anterior.
 - Purga de caché: automatizable sólo si el plan expone una API; si no, paso manual documentado.
 - Aprobación humana: el environment exige un revisor; un merge no publica por sí solo.
-- La protección con revisor obligatorio depende de la visibilidad y del plan de GitHub. Se
-  verifica en D2/D11. Si no está disponible, el despliegue sigue siendo manual y la aprobación
-  se registra en el PR.
+- La protección con revisor obligatorio depende del plan de GitHub. Se verifica en D11. Si no
+  está disponible, el despliegue sigue siendo manual y la aprobación se registra en el PR.
 
 No se contrata ningún servicio adicional: GitHub Actions y los environments forman parte del
 repositorio.
@@ -316,11 +317,14 @@ entregabilidad antes del lanzamiento.
 - Artefacto y hashes conservados.
 - Aprobación escrita para el corte.
 
-## 13. Decisiones pendientes específicas
+## 13. Decisiones específicas: estado
 
-| ID | Decisión | Recomendación |
-| --- | --- | --- |
-| D1 | Plan, ruta, SSH, subdominios, SSL y backups | Verificar en hPanel antes de fijar nada |
-| D13 | Nombre del subdominio y autorización DNS | `staging.oresteespinosacampos.es` |
-| D14 | Ventana de corte y aprobador | Fuera de horario comercial; propietario + responsable técnico |
-| D15 | Método final: SSH/rsync, SFTP o manual | Elegir tras D1; SSH/rsync si existe |
+| ID | Estado | Decisión | Efecto |
+| --- | --- | --- | --- |
+| D1 | Parcial | Plan, ruta, SSH, subdominios, SSL y backups | Verificar antes de staging; no bloquea diseño |
+| D2 | Resuelta | Repositorio público sin secretos ni backups | Nunca subir credenciales ni exportaciones |
+| D3 | Resuelta en planificación | `/trabajos/` + 301 desde `/blog/`; conservar proyectos | No aplicar redirecciones todavía |
+| D11 | Resuelta | Despliegue manual primero; automatización después | Fase 6 |
+| D13 | Pendiente | Subdominio y DNS | `staging.oresteespinosacampos.es` |
+| D14 | Pendiente | Ventana de corte y aprobador | Fuera de horario comercial |
+| D15 | Pendiente | Método final: SSH/rsync, SFTP o manual | Elegir tras D1 |

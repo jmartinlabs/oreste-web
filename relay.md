@@ -1,8 +1,9 @@
 # Agent Relay
 conversation: r-2ytputsr
 description: Redesign Oreste Web
-type: init
+type: join
 state: open
-participants: coordinator
+participants: coordinator, Alex
 sequence: 0
-created_at: 2026-11-03T16:29:53Z
+joined: Alex
+created_at: 2026-11-03T16:32:45Z
